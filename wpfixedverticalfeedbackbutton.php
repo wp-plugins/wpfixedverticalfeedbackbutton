@@ -5,12 +5,12 @@
   Plugin URI: http://codeboxr.com/product/fixed-vertical-feedback-button-for-wordpress
   Description: Vertical fixed feedback button for wordpress
   Author: Codeboxr
-  Version: 3.1
+  Version: 3.2
   Author URI: http://codeboxr.com
  */
 /*
   Copyright 2010-2014  Codeboxr (email : sabuj@codeboxr.com)
-  Last Update: 13.07.2014
+  Last Update: 26.12.2014
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ if (!function_exists('add_action')) {
     header('HTTP/1.1 403 Forbidden');
     exit();
 }
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 /*
  * Use WordPress 2.6 Constants
  */
@@ -50,9 +51,16 @@ if (!defined('WP_PLUGIN_DIR')) {
 if (!defined('WP_PLUGIN_URL')) {
     define('WP_PLUGIN_URL', WP_CONTENT_URL . '/plugins');
 }
-if(file_exists(WP_PLUGIN_DIR . '/wpfixedverticalfeedbackbutton/wpfixedverticalfeedbackbuttonaddon.php')){
-    require (WP_PLUGIN_DIR . '/wpfixedverticalfeedbackbutton/wpfixedverticalfeedbackbuttonaddon.php');
+$cbxplugin_active = is_plugin_active('wpfixedverticalfeedbackbuttonaddon/wpfixedverticalfeedbackbuttonaddon.php');
+
+$cbxplugin_file =  file_exists(WP_PLUGIN_DIR . '/wpfixedverticalfeedbackbuttonaddon/wpfixedverticalfeedbackbuttonaddon.php');
+
+
+if($cbxplugin_active && $cbxplugin_file ){
+    require (WP_PLUGIN_DIR . '/wpfixedverticalfeedbackbuttonaddon/wpfixedverticalfeedbackbuttonaddon.php');
 }
+$cbxplugin_class = class_exists('wpfixedverticalfeedbackbuttonaddon');
+//var_dump($cbxplugin_class);
 require (WP_PLUGIN_DIR . '/wpfixedverticalfeedbackbutton/formIntegration.php');
 
 /**
@@ -101,7 +109,7 @@ class cbWordpressFixedVerticalFeedbackButton {
                 'clinktitle'        => array('', '', '', '', ''),
                 'clinkopen'         => array('_blank', '_blank', '_blank', '_blank', '_blank'),
                 'show'              => array(1, 1, 1, 0, 0),
-                'showtype'          => array('', '', '', '', ''),
+                'showtype'          => array('show', 'show', 'show', 'show', 'show'),
                 'postlist'          => array('', '', '', '', ''),
                 'ver'               => array('1.0', '1.0', '1.0', '1.0', '1.0'),
                 'buttontext'        => array('feedback_mix.png', 'contact_small.png', 'care_share.png', 'be_social_small.png', 'callback_small.png'),
@@ -166,6 +174,9 @@ class cbWordpressFixedVerticalFeedbackButton {
 
     }
 
+    /**
+     *
+     */
     function wpfixedverticalfeedbackbutton_admin() {
         // adding option page for plugin
         if (function_exists('add_options_page')) {
@@ -279,17 +290,7 @@ class cbWordpressFixedVerticalFeedbackButton {
             <div id="poststuff" class="metabox-holder has-right-sidebar">
                 <div id="post-body">
                     <div id="post-body-content">
-                        <!-- <style type="text/css">
-                            #post-body p.description{
-                                white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
-                                white-space: -pre-wrap;      /* Opera 4-6 */
-                                white-space: -o-pre-wrap;    /* Opera 7 */
-                                white-space: pre-wrap;       /* css-3 */
-                                word-wrap: break-word;       /* Internet Explorer 5.5+ */
-                                word-break: break-all;
-                                white-space: normal;
-                            }
-                        </style>   -->
+
                         <div class="stuffbox cb-fixedverticalbutton-wrapper">
                             <h3>Plugin Settings</h3>
                             <div class="inside">
@@ -481,6 +482,7 @@ class cbWordpressFixedVerticalFeedbackButton {
                             <p>Facebook : <a href="http://facebook.com/codeboxr" target="_blank">http://facebook.com/codeboxr</a></p>
                             <p>Linkedin : <a href="www.linkedin.com/company/codeboxr" target="_blank">codeboxr</a></p>
                             <p>Gplus : <a href="https://plus.google.com/+codeboxr" target="_blank">Google Plus</a></p>
+                            <p>Youtube : <a href="https://www.youtube.com/user/codeboxrtv" target="_blank">Codeboxr TV</a></p>
                         </div>
                     </div>
                     <div class="postbox">
@@ -503,7 +505,7 @@ class cbWordpressFixedVerticalFeedbackButton {
                         <div class="inside">
                             <ul>
 	                            <li> 
-	                            	Supports 3 Different Contact forms <a href="http://wordpress.org/plugins/si-contact-form" target="_blank">Fast Secure Contact Form</a>, <a href="http://www.deliciousdays.com/cforms-plugin" target="_blank">CForms II</a>, <a href="http://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a>   
+	                            	Supports 5 Different Contact forms <a href="http://wordpress.org/plugins/si-contact-form" target="_blank">Fast Secure Contact Form</a>, <a href="http://www.deliciousdays.com/cforms-plugin" target="_blank">CForms II</a>, <a href="http://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a>, <a href="https://wordpress.org/plugins/ninja-forms/" target="_blank">Ninja Form</a>, <a href="http://www.gravityforms.com/" target="_blank">Gravity Form</a>
 	                            </li>
 	                            <li>Unlimited Buttons</li>
                             </ul>
@@ -555,22 +557,7 @@ class cbWordpressFixedVerticalFeedbackButton {
                 </div> <!-- side-info-column -->
             </div> <!-- poststuff -->
         </div> <!-- wrap -->
-<!--        <script type="text/javascript">-->
-<!--              jQuery(document).ready(function() {-->
-<!--                  jQuery('.backcolor, .hbackcolor').ColorPicker({-->
-<!--                      onSubmit: function(hsb, hex, rgb, el) {-->
-<!--                          jQuery(el).val(hex);-->
-<!--                          jQuery(el).ColorPickerHide();-->
-<!--                      },-->
-<!--                      onBeforeShow: function() {-->
-<!--                          jQuery(this).ColorPickerSetColor(this.value);-->
-<!--                      }-->
-<!--                  }).bind('keyup', function() {-->
-<!--                      jQuery(this).ColorPickerSetColor(this.value);-->
-<!--                  });-->
-<!--              });-->
-<!---->
-<!--        </script>-->
+
         <script type="text/javascript">
               jQuery(document).ready(function() {
                   //jQuery(".fvfeedbackbuttonprop").hide();
@@ -591,10 +578,6 @@ class cbWordpressFixedVerticalFeedbackButton {
 
     }
 
-    /* function wpfvfbutton_addjs() {
-      wp_enqueue_script('jquery');
-      wp_enqueue_script( 'contactform', WP_PLUGIN_URL.'/wpfixedverticalfeedbackbutton/js/contactform.js', 'jquery', '1.0', false );
-      } */
 
     //adding style for feedback button
     function wpfvfbutton_addstyle() {
@@ -632,18 +615,12 @@ class cbWordpressFixedVerticalFeedbackButton {
 
                 $buttontext = $this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$count];
 				
-				//var_dump($this->buttondata);
-				//var_dump($this->buttondata[$buttontext]);
-				/*
-				echo '<pre>';
-				print_r($this->wpfixedverticalfeedbackbutton);
-				echo '</pre>';
-				*/
+
 				//custom image
                 if($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$count] == 'custom_img') {
                 	
-                    $imageurl = $wpfixedverticalfeedbackbutton['buttoncon']['bilink'][$count];
-                    $height   = $wpfixedverticalfeedbackbutton['buttoncon']['biheight'][$count];
+                    $imageurl = $this->wpfixedverticalfeedbackbutton['buttoncon']['bilink'][$count];
+                    $height   = $this->wpfixedverticalfeedbackbutton['buttoncon']['biheight'][$count];
                 } else {
                     $imageurl = WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/images/' . $buttontext;
 					//var_dump($imageurl);
@@ -684,8 +661,7 @@ class cbWordpressFixedVerticalFeedbackButton {
 							//var_dump($height);
 				}
                 else {
-                	//var_dump('I am here');
-					//var_dump($height);
+
                     echo '<style type="text/css" media="screen">
                             div#fvfeedbackbutton' . $count . '{
 
@@ -749,29 +725,9 @@ class cbWordpressFixedVerticalFeedbackButton {
         //wp_enqueue_style('thickbox.css', '/'.WPINC.'/js/thickbox/thickbox.css', null, '1.0');
 
         wp_enqueue_style('jquery.nyromodal', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.nyroModal/styles/nyroModal.css', '', '1.0', false);
-        wp_enqueue_script('jquery.nyromodal', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.nyroModal/js/jquery.nyroModal.custom.min.js', 'jquery', '1.0', false);
-        wp_enqueue_script('jquery.nyromodalfrontjs', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/wpfixedverticalfeedbackbuttonfront.js', 'jquery.nyromodal', '1.0', false);
+        wp_enqueue_script('jquery.nyromodal', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.nyroModal/js/jquery.nyroModal.custom.min.js', array('jquery'), '1.0', false);
+        wp_enqueue_script('jquery.nyromodalfrontjs', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/wpfixedverticalfeedbackbuttonfront.js', array('jquery','jquery.nyromodal'), '1.0', false);
 
-        // echo '<style type="text/css">
-        //     #popup {
-        //         height: 200px;
-        //         width: 300px;
-        //         background:#FFF;
-        //         border: thin solid #000;
-        //        z-index:10001;
-        //     }
-        //     #popupbackground {
-        //         display:none;
-        //        position:fixed;
-        //        _position:absolute; /* hack for internet explorer 6*/
-        //        height:100%;
-        //        width:100%;
-        //        top:0;
-        //        left:0;
-        //        background:#000000;
-        //        z-index:10000;
-        //     }
-        //     </style>';
 
     }
 
@@ -815,9 +771,6 @@ class cbWordpressFixedVerticalFeedbackButton {
                         </style>
                     ';
                 }
-
-
-
                 if (
                     $this->wpfixedverticalfeedbackbutton['buttoncon']['showtype'][$count] == 'show' && in_array($post->ID, $postlist) ||
                     $this->wpfixedverticalfeedbackbutton['buttoncon']['showtype'][$count] == 'hide' && !in_array($post->ID, $postlist) ||
@@ -834,9 +787,18 @@ class cbWordpressFixedVerticalFeedbackButton {
                         $method  = $plugins[ $formName ]['formDisplayFunction'];
 
                         //echo '<pre>'; var_dump(method_exists('wpFvfbFormIntegration', $method)); echo '</pre>'; die();
+                        if(array_key_exists('classname' , $plugins[ $formName ] )){
+                            $class_name = $plugins[ $formName ]['classname'];
+                        }
+                        else{
+                            $class_name = 'wpFvfbFormIntegration';
+                        }
 
-                        if(method_exists('wpFvfbFormIntegration', $method)) {
-                            $form = wpFvfbFormIntegration::$method($formId);
+                        if(method_exists('wpFvfbFormIntegration', $method) || method_exists($class_name , $method)) {
+                            if($method == ''){
+
+                            }
+                            $form = $class_name::$method($formId);
 
                             //echo '<pre>'; var_dump($formId, $formName, $method); echo '</pre>'; die();
 
@@ -876,23 +838,18 @@ class cbWordpressFixedVerticalFeedbackButton {
                             }
                         }
 
-                        echo $formOutput;
+                        echo apply_filters('cbx_change_form_output' , $formOutput , $formId);
                         echo '<style type="text/css">
                         .modal-backdrop {
                             position: relative !important;
                         }
-                        /*
-                        .wpfvfbForm {
-                            display: block !important;
-                        }
-                        */
 
                     </style>';
                         $cbwpfvb_show_form = 1;
                     }
 
                     else {
-                        //var_dump('i am here');
+
                         $anchorClass = 'displayFormAnchor displayFormAnchor_'.$count.' ';
                         $cbwpfvb_show_form = 0;
                         $class = $modalAttr = $formOutput = '';
@@ -902,14 +859,6 @@ class cbWordpressFixedVerticalFeedbackButton {
                     //echo '<!-- Codeboxr fixed verticel feedback button(s) --><div '.$modalAttr.' data-btn-id="'.$count.'" class="fvfeedbackbutton '.$class.' " id="fvfeedbackbutton' . $count . '"><a class="'.$anchorClass.'" data-btn-id="'.$count.'" '.$anchorModalAttr.' href="' . $link . '" title="' . $title . '" target="' . $open . '"><span>' . $imageOrText . '</span></a></div>'; //old
                     echo '<div '.$modalAttr.'  class="fvfeedbackbutton '.$class.' " id="fvfeedbackbutton' . $count . '"><a class="'.$anchorClass.'"  '.$anchorModalAttr.' href="' . $link . '" data-count = "'.$count.'" data-show-form = "'.$cbwpfvb_show_form.'" title="' . $title . '" target="' . $open . '"><span>' . $imageOrText . '</span></a></div>'; //old
 
-
-
-
-//                    echo '<script type="text/javascript">
-//                        jQuery(document).ready(function($) {
-//                            jQuery(\'.nyroModal\').nyroModal();
-//                        });
-//                    </script>';
 
                 }
             }
@@ -963,14 +912,6 @@ class cbWordpressFixedVerticalFeedbackButton {
 }
 
 //end of class
-
-
-/*
-  if($wpfixedverticalfeedbackbutton['buttoncon']['show'][0] == '1'|| $wpfixedverticalfeedbackbutton['buttoncon']['show'][1] == '1' )
-  {
-  add_action('wp_head', 'wpfvfbutton_addstyle');
-  add_action('wp_footer','wpfvfbutton_addhtml');
-  } */
 
 
 $CBWordpressFixedVerticalFeedbackButton = new cbWordpressFixedVerticalFeedbackButton();

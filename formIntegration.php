@@ -2,6 +2,9 @@
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
+/**
+ * Class wpFvfbFormIntegration
+ */
 class wpFvfbFormIntegration {
 
     public static $wpfixedverticalfeedbackbutton;
@@ -10,7 +13,6 @@ class wpFvfbFormIntegration {
 
         if( isset($_POST['cbFvfbAdminFormIntegrationData']) and !empty($_POST['cbFvfbAdminFormIntegrationData']) ) {
             $returnedData = $_POST['cbFvfbAdminFormIntegrationData'];
-            //echo '<pre>'; print_r($returnedData); echo '</pre>'; die();
 
             if( !empty($returnedData) ) {
                 if( wp_verify_nonce($returnedData['nonce'], 'admin_head-settings_page_wpfixedverticalfeedbackbutton') ) {
@@ -22,11 +24,13 @@ class wpFvfbFormIntegration {
         die();
     }
 
+    /**
+     * @param $vars
+     *
+     * @return mixed|string|void
+     */
     public static function constructFormListingOutput($vars) {
         $output = '';
-
-
-
         $plugins = wpFvfbFormIntegration::getFormPlugins();
 
         if( isset($plugins[ $vars['outsideFormId'] ]) && ( is_plugin_active($plugins[ $vars['outsideFormId'] ]['pluginFile']) ) ) {
@@ -36,11 +40,16 @@ class wpFvfbFormIntegration {
             $selectedForm = ( (wpFvfbFormIntegration::$wpfixedverticalfeedbackbutton['buttoncon']['form_listing'][ $vars['buttonNumber'] ]) ? wpFvfbFormIntegration::$wpfixedverticalfeedbackbutton['buttoncon']['form_listing'][ $vars['buttonNumber'] ] : '' );
 
             $method  = $plugins[ $vars['outsideFormId'] ]['formListingFunction'];
+            if(array_key_exists('classname' ,$plugins[ $vars['outsideFormId'] ] )){
+                $class_name = $plugins[ $vars['outsideFormId'] ]['classname'];
+            }
+            else{
+                $class_name = 'wpFvfbFormIntegration';
+            }
 
-            if(method_exists('wpFvfbFormIntegration', $method)) {
-                $list = wpFvfbFormIntegration::$method();
-
-                //echo '<pre>'; print_r($selectedForm); echo '</pre>'; die();
+            if(method_exists('wpFvfbFormIntegration', $method) || method_exists($class_name, $method)) {
+                $list = $class_name::$method();
+               // var_dump($list);
 
                 if(!empty($list)) {
                     if(!empty($list['forms'])) {
@@ -78,6 +87,9 @@ class wpFvfbFormIntegration {
         return $output;
     }
 
+    /**
+     * @return mixed|void
+     */
     public static function getFormPlugins() {
         $plugins = array(
             'cforms' => array(
@@ -98,11 +110,15 @@ class wpFvfbFormIntegration {
                 'formListingFunction' => 'sicfList',
                 'formDisplayFunction' => 'sicfDisplay',
             ),
+
         );
 
-        return $plugins;
+        return apply_filters('cbxfixedvbtn_add_form_params' ,$plugins );
     }
 
+    /**
+     * @return array
+     */
     public static function cformsList() {
         $forms = array();
         if( is_plugin_active('cforms/cforms.php') ) {
@@ -122,9 +138,13 @@ class wpFvfbFormIntegration {
                 }
             }
         }
+      //  var_dump($forms);
         return $forms;
     }
 
+    /**
+     * @return array
+     */
     public static function cf7List() {
         $forms = array();
         if( is_plugin_active('contact-form-7/wp-contact-form-7.php') ) {
@@ -153,6 +173,9 @@ class wpFvfbFormIntegration {
         return $forms;
     }
 
+    /**
+     * @return array
+     */
     public static function sicfList() {
         $forms = array();
         if( is_plugin_active('si-contact-form/si-contact-form.php') ) {
@@ -169,6 +192,11 @@ class wpFvfbFormIntegration {
         return $forms;
     }
 
+    /**
+     * @param $formId
+     *
+     * @return string
+     */
     public static function cformsDisplay($formId) {
         $output = '';
 
@@ -190,6 +218,11 @@ class wpFvfbFormIntegration {
         return $output;
     }
 
+    /**
+     * @param $formId
+     *
+     * @return string
+     */
     public static function cf7Display($formId) {
         $output = '';
 
@@ -227,14 +260,19 @@ class wpFvfbFormIntegration {
 
             $output .= '<link rel="stylesheet" media="all" type="text/css" href="' . wpcf7_plugin_url( 'includes/css/styles.css' ) . '"/>';
             if ( wpcf7_is_rtl() ) {
-		$output .= '<link rel="stylesheet" media="all" type="text/css" href="' . wpcf7_plugin_url( 'includes/css/style-rtl.css' ) . '"/>';
+		        $output .= '<link rel="stylesheet" media="all" type="text/css" href="' . wpcf7_plugin_url( 'includes/css/style-rtl.css' ) . '"/>';
             }
 
         }
-
+      //  var_dump($output);
         return $output;
     }
 
+    /**
+     * @param $formId
+     *
+     * @return string
+     */
     public static function sicfDisplay($formId) {
         $output = '';
 
@@ -245,5 +283,5 @@ class wpFvfbFormIntegration {
         return $output;
     }
 
-}
+}// end of class
 

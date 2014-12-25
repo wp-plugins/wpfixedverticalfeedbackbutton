@@ -64,6 +64,8 @@ You  can set the position then button will be fixed at that position, just try i
 
 
 == Changelog ==
+=3.2=
+Code cleanup
 
 = 1.1 =
 * First Release

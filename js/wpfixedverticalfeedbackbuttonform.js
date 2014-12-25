@@ -1,69 +1,7 @@
-/*
-function loadPopup() {
-    jQuery("#popupbackground").css({
-	"opacity": "0.7"
-    });
-    jQuery("#popupbackground").fadeIn("slow");
-    jQuery("#popup").fadeIn("slow");
-}
 
-function unloadPopup() {
-    //$("#popup").animate({"top": "+=15px", "opacity":"20%"}, "slow").fadeOut("slow");
-    //$("#popup").animate({"top": "+=15px"}, "fast").hide("slow");
-    jQuery("#popup").fadeOut("slow");
-    jQuery("#popupbackground").fadeOut("slow");
-}
-
-function centerPopup() {
-    //request data for centering
-    var windowWidth = document.documentElement.clientWidth;
-    var windowHeight = document.documentElement.clientHeight;
-    var popupHeight = jQuery("#popup").height();
-    var popupWidth = jQuery("#popup").width();
-    //centering
-    jQuery("#popup").css({
-	"position": "fixed",
-	"top": windowHeight / 2 - popupHeight / 2,
-	"left": windowWidth / 2 - popupWidth / 2,
-    });
-    jQuery("#popupbackground").css({
-	"height": windowHeight
-    });
-
-}
-*/
 
 jQuery(document).ready(function($) {
-    /*
-    jQuery("#popup").hide();
-    jQuery(".contactform").click(function() {
-	//$("p").hide();
-	centerPopup();
-	loadPopup();
-    });
-    jQuery("#popupclose").click(function() {
-	//$("p").show();
-	unloadPopup();
-    });
-    jQuery("#popupbackground").click(function() {
-	//$("p").show();
-	unloadPopup();
-    });
-    */
 
-	/*var itemname = $('.select_buttontext').val();
-	console.log(itemname);
-	if(itemname === 'custom_img') {
-		//console.log('hello');
-	    $('.for_custom_image').css("display","block");
-	    $('.for_custom_text').hide();
-	} else if(itemname === 'custom_text') {
-	    $('.for_custom_image').hide();
-	    $('.for_custom_text').show();
-	} else {
-	    $('.for_custom_image').hide();
-	    $('.for_custom_text').hide();
-	}*/
     $('.select_buttontext').change(function() {
 		var val = $(this).val();
 		var selnumber = $(this).attr('data-selnumber');
@@ -150,9 +88,9 @@ jQuery(document).ready(function($) {
             var deActivatedContactFormPlugins = jQuery('.deActivatedContactFormPlugins').val().split('_/_');
             //var val = jQuery('input[name="'+name+'"]').val();
 
-            console.log(val, buttonNumber, deActivatedContactFormPlugins );
+           // console.log(val, buttonNumber, deActivatedContactFormPlugins );
 
-            if( (val == 'yes') && (jQuery(this).val().length !== 0)  ) {
+         //   if( (val == 'yes') && (jQuery(this).val().length !== 0)  ) {
 
             if ( (jQuery.inArray( jQuery(this).val() , deActivatedContactFormPlugins) < 0) ) {
                 var nonce = jQuery('#wpfixedverticalfeedbackbutton').val();
@@ -224,21 +162,19 @@ jQuery(document).ready(function($) {
 
                 jQuery('.formPluginFormList_loadingImg').hide();
             }
-            } else {
+            /*} /*else {
             $('.formPlugin_wrapper .formPluginFormList').css({
                 'margin-bottom': '10px',
                 'color': 'red'
             }).html('Please enable <a href="#form_open-'+buttonNumber+'">"Enable Popular Form Integration"</a> first. Select form and save once').show();
 
             jQuery('.formPluginFormList_loadingImg').hide();
-            }
+            }*/
         });
 
 
         //adding color picker
     });
-
-
 
     function checkJSON(string) {
         try {
@@ -251,42 +187,7 @@ jQuery(document).ready(function($) {
         }
     }
 
-    /*
-     * onClick Popup Form open
-     */
-    /*
-    jQuery('.displayFormAnchor').each(function() {
-        //var btnId = jQuery(this).attr('data-btn-id');
-        //var formDiv = jQuery(this).attr('data-target');
-
-        jQuery(this).nyroModal();
-    });
-    */
-    //
-    //	jQuery(this).click(function(e) {
-    //	    e.preventDefault();
-    //
-    //	    console.log(btnId,formDiv );
-    //
-    //	    jQuery('#'+formDiv).on('shown', function() {
-    //		jQuery('.cbGrowthEmailForm').show();
-    //		jQuery('.cbGrowthEmailFormButton').show();
-    //		jQuery('.cbEmailDiv .status').hide();
-    //
-    //		jQuery('#cbimage_action_email').bind('click');
-    //	    });
-    //
-    //	    jQuery('#'+formDiv).on('hidden', function() {
-    //		jQuery('#cbimage_action_email').unbind('click');
-    //	    });
-    //
-    //	    return false;
-    //	});
-
     $( '.cbcolor' ).wpColorPicker();
-
-
-
 
 
 });

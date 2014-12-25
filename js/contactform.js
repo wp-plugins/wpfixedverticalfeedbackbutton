@@ -5,6 +5,7 @@ function loadPopup() {
     });
     jQuery("#popupbackground").fadeIn("slow");
     jQuery("#popup").fadeIn("slow");
+    //jQuery("#popupbackground").css("color" , '#ff00ff');
 }
 
 function unloadPopup() {
@@ -24,7 +25,8 @@ function centerPopup() {
     jQuery("#popup").css({
 	"position": "fixed",
 	"top": windowHeight / 2 - popupHeight / 2,
-	"left": windowWidth / 2 - popupWidth / 2,
+	"left": windowWidth / 2 - popupWidth / 2
+
     });
     jQuery("#popupbackground").css({
 	"height": windowHeight
@@ -50,19 +52,7 @@ jQuery(document).ready(function($) {
 	unloadPopup();
     });
 
-	/*var itemname = $('.select_buttontext').val();
-	console.log(itemname);
-	if(itemname === 'custom_img') {
-		//console.log('hello');
-	    $('.for_custom_image').css("display","block");
-	    $('.for_custom_text').hide();
-	} else if(itemname === 'custom_text') {
-	    $('.for_custom_image').hide();
-	    $('.for_custom_text').show();
-	} else {
-	    $('.for_custom_image').hide();
-	    $('.for_custom_text').hide();
-	}*/
+
     $('.select_buttontext').change(function() {
 		var val = $(this).val();
 		var selnumber = $(this).attr('data-selnumber');
@@ -245,41 +235,6 @@ jQuery(document).ready(function($) {
 	    return false;
 	}
     }
-
-    /*
-     * onClick Popup Form open
-     */
-    /*
-    jQuery('.displayFormAnchor').each(function() {
-	var btnId = jQuery(this).attr('data-btn-id');
-	var formDiv = jQuery(this).attr('data-target');
-
-	jQuery(this).nyroModal();
-    });
-    */
-	/*
-	jQuery(this).click(function(e) {
-	    e.preventDefault();
-
-	    console.log(btnId,formDiv );
-
-	    jQuery('#'+formDiv).on('shown', function() {
-		jQuery('.cbGrowthEmailForm').show();
-		jQuery('.cbGrowthEmailFormButton').show();
-		jQuery('.cbEmailDiv .status').hide();
-
-		jQuery('#cbimage_action_email').bind('click');
-	    });
-
-	    jQuery('#'+formDiv).on('hidden', function() {
-		jQuery('#cbimage_action_email').unbind('click');
-	    });
-
-	    return false;
-	});
-	*/
-
-
 
 
 

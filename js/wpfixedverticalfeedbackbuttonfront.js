@@ -6,5 +6,7 @@ jQuery(document).ready(function($) {
 
     })
   $('.nyroModal').nyroModal();
+ // $('.nyroModalCont').css({'z-index' : 23333});
+
 
 });
