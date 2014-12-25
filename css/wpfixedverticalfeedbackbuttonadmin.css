@@ -1,0 +1,65 @@
+/* For bootstrap */
+label {
+    display: inline !important;
+}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    height: auto !important;
+}
+
+div.fvfeedbackbuttonprop{ display: none; padding: 5px; }
+div.fvfeedbackbuttonprop table{
+    border-bottom: 1px solid #AAAAAA;
+}
+div.fvfeedbackhandler{
+    border: 1px solid #DFDFDF;
+    border-color: #CCCCCC #CCCCCC #AAAAAA;
+    background-color:#e0e0e0;
+    -moz-box-shadow:inset 0 0 1px #fff;-ms-box-shadow:inset 0 0 1px #fff;-webkit-box-shadow:inset 0 0 1px #fff;box-shadow:inset 0 0 1px #fff;
+    filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#fffafafa,EndColorStr=#ffdcdcdc); background-image:-moz-linear-gradient(top,#fafafa 0,#dcdcdc 100%); background-image:-ms-linear-gradient(top,#fafafa 0,#dcdcdc 100%); background-image:-o-linear-gradient(top,#fafafa 0,#dcdcdc 100%); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#fafafa),color-stop(100%,#dcdcdc)); background-image:-webkit-linear-gradient(top,#fafafa 0,#dcdcdc 100%); background-image:linear-gradient(to bottom,#fafafa 0,#dcdcdc 100%);
+    color: #000;
+    -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
+    margin: 5px 0;
+}
+
+div.fvfeedbackhandler h3 {
+    -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
+
+    padding-left: 20px;
+    cursor: pointer;
+    margin: 0;
+    height: 17px;
+    line-height: 45px;
+    background-color:#e0e0e0;
+    -moz-box-shadow:inset 0 0 1px #fff;-ms-box-shadow:inset 0 0 1px #fff;-webkit-box-shadow:inset 0 0 1px #fff;box-shadow:inset 0 0 1px #fff;
+    filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#fffafafa,EndColorStr=#ffdcdcdc); background-image:-moz-linear-gradient(top,#fafafa 0,#dcdcdc 100%); background-image:-ms-linear-gradient(top,#fafafa 0,#dcdcdc 100%); background-image:-o-linear-gradient(top,#fafafa 0,#dcdcdc 100%); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#fafafa),color-stop(100%,#dcdcdc)); background-image:-webkit-linear-gradient(top,#fafafa 0,#dcdcdc 100%); background-image:linear-gradient(to bottom,#fafafa 0,#dcdcdc 100%);
+
+}
+
+div.fvfeedbackhandlert h3{
+    border-bottom: 1px solid #AAAAAA;
+    -webkit-border-radius: 10px 10px 0 0; -moz-border-radius: 10px 10px 0 0; border-radius:10px 10px 0 0;
+}
+
+div.cbclear{ clear: both;}
+
+.inside ul li{
+    margin-bottom: 10px;
+}
+
+.inside ul {
+    list-style: none !important;
+}
+
+/*disbale top admin bar to show debug data properly*/
+/*#wpadminbar{ display: none;}*/
+
+.fvfeedbackbuttonprop td {
+    overflow: visible;
+}
+.fvfeedbackbuttonprop td.no-overflow .selectize-input {
+    width: 150px;
+}
+
+.wpfvfbFormWrapper {
+
+}
