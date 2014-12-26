@@ -1,7 +1,7 @@
 === Codeboxr Fixed Vertical Feedback button ===
 Contributors: manchumahara, codeboxr
 Donate link: http://codeboxr.com
-Tags: button ,form ,contact
+Tags: button,form,contact,feedback,feedback button,contact button
 Requires at least: 3.0
 Tested up to: 4.0
 Stable tag: 3.2
@@ -64,8 +64,10 @@ You  can set the position then button will be fixed at that position, just try i
 
 
 == Changelog ==
-=3.2=
-Code cleanup
+= 3.2 =
+* Code cleanup
+* readme.txt file updated
+
 
 = 1.1 =
 * First Release
