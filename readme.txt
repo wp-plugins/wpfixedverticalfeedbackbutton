@@ -4,7 +4,7 @@ Donate link: http://codeboxr.com
 Tags: button ,form ,contact
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 3.1
+Stable tag: 3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,7 +27,7 @@ Features:
 
 Pro Version:
 
-There is a pro version of this plugin supported from our company site which supports unlimited buttons and supports 3 Different Contact forms Fast Secure Contact Form, CForms II, Contact Form 7
+There is a pro version of this plugin supported from our company site which supports unlimited buttons and supports 3 Different Contact forms Fast Secure Contact Form, CForms II, Contact Form 7, Ninja Forms, Gravity Forms
 See more details here http://codeboxr.com/product/fixed-vertical-feedback-button-for-wordpress
 
 
