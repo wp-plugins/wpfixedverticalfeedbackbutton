@@ -1,16 +1,16 @@
 <?php
 
 /*
-  Plugin Name: Codeboxr Fixed Vertical Feedback button
+  Plugin Name: CBX Fixed Vertical Feedback Button
   Plugin URI: http://codeboxr.com/product/fixed-vertical-feedback-button-for-wordpress
-  Description: Vertical fixed feedback button for wordpress
+  Description: Fixed Vertical feedback button for wordpress with custom forms intergation
   Author: Codeboxr
-  Version: 3.2
+  Version: 3.3
   Author URI: http://codeboxr.com
  */
 /*
-  Copyright 2010-2014  Codeboxr (email : sabuj@codeboxr.com)
-  Last Update: 26.12.2014
+  Copyright 2010-2015  Codeboxr (email : sabuj@codeboxr.com)
+  Last Update: 15.02.2015
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by

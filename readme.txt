@@ -1,14 +1,14 @@
 === Codeboxr Fixed Vertical Feedback button ===
 Contributors: manchumahara, codeboxr
 Donate link: http://codeboxr.com
-Tags: button,form,contact,feedback,feedback button,contact button
+Tags: button ,form ,contact
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 3.2
+Stable tag: 3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Vertical fixed feedback button for wordpress
+CBX Fixed Vertical Feedback Button
 
 == Description ==
 
@@ -27,7 +27,7 @@ Features:
 
 Pro Version:
 
-There is a pro version of this plugin supported from our company site which supports unlimited buttons and supports 3 Different Contact forms Fast Secure Contact Form, CForms II, Contact Form 7, Ninja Forms, Gravity Forms
+There is a pro version of this plugin supported from our company site which supports unlimited buttons and supports 3 Different Contact forms Fast Secure Contact Form, CForms II, Contact Form 7
 See more details here http://codeboxr.com/product/fixed-vertical-feedback-button-for-wordpress
 
 
@@ -64,10 +64,11 @@ You  can set the position then button will be fixed at that position, just try i
 
 
 == Changelog ==
-= 3.2 =
-* Code cleanup
-* readme.txt file updated
+= 3.3 =
+* minor fixes
 
+=3.2=
+* Code cleanup
 
 = 1.1 =
 * First Release
