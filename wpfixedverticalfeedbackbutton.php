@@ -795,10 +795,11 @@ class cbWordpressFixedVerticalFeedbackButton {
                         }
 
                         if(method_exists('wpFvfbFormIntegration', $method) || method_exists($class_name , $method)) {
-                            if($method == ''){
+                            /*if($method == ''){
 
-                            }
-                            $form = $class_name::$method($formId);
+                            }*/
+                            //$form = $class_name::$method($formId);
+                            $form = call_user_func_array(array($class_name, $method), array($formId));
 
                             //echo '<pre>'; var_dump($formId, $formName, $method); echo '</pre>'; die();
 
