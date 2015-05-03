@@ -3,6 +3,7 @@ function loadPopup() {
     jQuery("#popupbackground").css({
 	"opacity": "0.7"
     });
+
     jQuery("#popupbackground").fadeIn("slow");
     jQuery("#popup").fadeIn("slow");
     //jQuery("#popupbackground").css("color" , '#ff00ff');
@@ -21,15 +22,17 @@ function centerPopup() {
     var windowHeight = document.documentElement.clientHeight;
     var popupHeight = jQuery("#popup").height();
     var popupWidth = jQuery("#popup").width();
+
     //centering
     jQuery("#popup").css({
-	"position": "fixed",
-	"top": windowHeight / 2 - popupHeight / 2,
-	"left": windowWidth / 2 - popupWidth / 2
+        "position": "fixed",
+        "top": windowHeight / 2 - popupHeight / 2,
+        "left": windowWidth / 2 - popupWidth / 2
 
     });
+
     jQuery("#popupbackground").css({
-	"height": windowHeight
+	    "height": windowHeight
     });
 
 }
@@ -37,11 +40,10 @@ function centerPopup() {
 
 jQuery(document).ready(function($) {
     jQuery("#popup").hide();
-    jQuery(".contactform").click(function() {
-	//$("p").hide();
 
-	centerPopup();
-	loadPopup();
+    jQuery(".contactform").click(function() {
+	    centerPopup();
+	    loadPopup();
     });
     jQuery("#popupclose").click(function() {
 	//$("p").show();
@@ -94,33 +96,29 @@ jQuery(document).ready(function($) {
 		}
     });
 
-//$('.for_custom_image').show();
+
 
 
     jQuery('.cb-fixedverticalbutton-wrapper input[type="radio"]').each(function () {
-	//console.log(jQuery(this).attr('checked'));
-	//console.log(jQuery(this));
-	if( jQuery(this).prop('checked') === true ) {
-	    jQuery(this).checked = true;
-	    //console.log(jQuery(this));
-
-	}
+        if( jQuery(this).prop('checked') === true ) {
+            jQuery(this).checked = true;
+        }
     });
 
     stylizeFields();
 
     function stylizeFields() {
-	var elems = ['.cb-fixedverticalbutton-wrapper'];
+        var elems = ['.cb-fixedverticalbutton-wrapper'];
 
-	for(i in elems) {
-	    $(elems[i] + ' input[type="checkbox"], input[type="radio"]').uniform();
+        for(i in elems) {
+            $(elems[i] + ' input[type="checkbox"], input[type="radio"]').uniform();
 
-	    $(elems[i] + ' select').selectize({
-		//create: true,
-		sortField: 'text'
-	    });
+            $(elems[i] + ' select').selectize({
+            //create: true,
+            sortField: 'text'
+            });
 
-	}
+        }
     }
 
     /*
@@ -226,14 +224,14 @@ jQuery(document).ready(function($) {
 
 
     function checkJSON(string) {
-	try {
-	    var json = jQuery.parseJSON(string);
+        try {
+            var json = jQuery.parseJSON(string);
 
-	    return json;
-	}
-	catch(e) {
-	    return false;
-	}
+            return json;
+        }
+        catch(e) {
+            return false;
+        }
     }
 
 

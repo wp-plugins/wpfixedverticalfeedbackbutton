@@ -1,10 +1,10 @@
-=== Codeboxr Fixed Vertical Feedback button ===
+=== CBX Fixed Vertical Feedback Button ===
 Contributors: manchumahara, codeboxr
 Donate link: http://codeboxr.com
 Tags: button ,form ,contact
 Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 3.1
+Tested up to: 4.2
+Stable tag: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,12 +58,24 @@ You  can set the position then button will be fixed at that position, just try i
 
 == Screenshots ==
 
-1. button front view
-2. Single Button Setting
-3. Plugin Option Panel
+1. Frontend Button
+2. Backend Button Configuration Access
+3. Plugin Option Panel-1
+4. Plugin Option Panel-2
+5. Plugin Option Panel-3
+6. Plugin Option Panel-4
+7. Custom image or custom text as button text
+8. Plugin Option Panel-5
+9. Popular Form integration
+10. Select specific form
+11. Frontend Form integration
 
 
 == Changelog ==
+= 3.4 =
+* Dynamic method call is now compatible with php version less than 5.3
+* Now the plugin setting page follows wordpress style responsive structure, still need more fine tune
+* Screenshots updated
 = 3.3 =
 * minor fixes
 

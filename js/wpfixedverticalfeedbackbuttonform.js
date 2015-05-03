@@ -47,30 +47,30 @@ jQuery(document).ready(function($) {
 
 
     jQuery('.cb-fixedverticalbutton-wrapper input[type="radio"]').each(function () {
-	//console.log(jQuery(this).attr('checked'));
-	//console.log(jQuery(this));
-	if( jQuery(this).prop('checked') === true ) {
-	    jQuery(this).checked = true;
-	    //console.log(jQuery(this));
-
-	}
+        if( jQuery(this).prop('checked') === true ) {
+            jQuery(this).checked = true;
+        }
     });
 
+    /*
     stylizeFields();
 
     function stylizeFields() {
-	var elems = ['.cb-fixedverticalbutton-wrapper'];
+        var elems = ['.cb-fixedverticalbutton-wrapper'];
 
-	for(i in elems) {
-	    $(elems[i] + ' input[type="checkbox"], input[type="radio"]').uniform();
 
-	    $(elems[i] + ' select').selectize({
-		//create: true,
-		sortField: 'text'
-	    });
+        for(i in elems) {
+            $(elems[i] + ' input[type="checkbox"], input[type="radio"]').uniform();
 
-	}
+            $(elems[i] + ' select').selectize({
+                //create: true,
+                sortField: 'text'
+            });
+
+        }
+
     }
+    */
 
     /*
      * Display form listing from other form plugins.
@@ -86,11 +86,6 @@ jQuery(document).ready(function($) {
             var val = jQuery('.form_open-'+buttonNumber+' input[name="form_open['+buttonNumber+']"]:checked').val();
 
             var deActivatedContactFormPlugins = jQuery('.deActivatedContactFormPlugins').val().split('_/_');
-            //var val = jQuery('input[name="'+name+'"]').val();
-
-           // console.log(val, buttonNumber, deActivatedContactFormPlugins );
-
-         //   if( (val == 'yes') && (jQuery(this).val().length !== 0)  ) {
 
             if ( (jQuery.inArray( jQuery(this).val() , deActivatedContactFormPlugins) < 0) ) {
                 var nonce = jQuery('#wpfixedverticalfeedbackbutton').val();
@@ -100,7 +95,7 @@ jQuery(document).ready(function($) {
                 cbFvfbAdminFormIntegrationData['nonce'] = nonce;
                 cbFvfbAdminFormIntegrationData['outsideFormId'] = jQuery(this).val();
 
-                //console.log(cbFvfbAdminFormIntegrationData);
+
 
                 jQuery.ajax({
                 type: 'POST',
@@ -110,7 +105,7 @@ jQuery(document).ready(function($) {
                     cbFvfbAdminFormIntegrationData: cbFvfbAdminFormIntegrationData
                 },
                 success: function(data, textStatus, XMLHttpRequest){
-                    //console.log(data);
+
 
                     if(data.length != 0) {
 
@@ -121,7 +116,7 @@ jQuery(document).ready(function($) {
                         }).empty().append(data);
 
                         //stylizeFields();
-                        $('.formPlugin_wrapper .formPluginFormList select').selectize({ create: true, sortField: 'text' });
+                        //$('.formPlugin_wrapper .formPluginFormList select').selectize({ create: true, sortField: 'text' });
                     } else {
                         if(parsedData.hasOwnProperty('errorMessage')) {
                         $('.formPlugin_wrapper .formPluginFormList').css({
@@ -162,14 +157,6 @@ jQuery(document).ready(function($) {
 
                 jQuery('.formPluginFormList_loadingImg').hide();
             }
-            /*} /*else {
-            $('.formPlugin_wrapper .formPluginFormList').css({
-                'margin-bottom': '10px',
-                'color': 'red'
-            }).html('Please enable <a href="#form_open-'+buttonNumber+'">"Enable Popular Form Integration"</a> first. Select form and save once').show();
-
-            jQuery('.formPluginFormList_loadingImg').hide();
-            }*/
         });
 
 

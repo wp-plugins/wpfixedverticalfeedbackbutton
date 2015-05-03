@@ -30,6 +30,10 @@ class wpFvfbFormIntegration {
      * @return mixed|string|void
      */
     public static function constructFormListingOutput($vars) {
+	   /* echo '<pre>';
+	    print_r($vars);
+	    echo '</pre>';*/
+
         $output = '';
         $plugins = wpFvfbFormIntegration::getFormPlugins();
 
@@ -40,6 +44,7 @@ class wpFvfbFormIntegration {
             $selectedForm = ( (wpFvfbFormIntegration::$wpfixedverticalfeedbackbutton['buttoncon']['form_listing'][ $vars['buttonNumber'] ]) ? wpFvfbFormIntegration::$wpfixedverticalfeedbackbutton['buttoncon']['form_listing'][ $vars['buttonNumber'] ] : '' );
 
             $method  = $plugins[ $vars['outsideFormId'] ]['formListingFunction'];
+
             if(array_key_exists('classname' ,$plugins[ $vars['outsideFormId'] ] )){
                 $class_name = $plugins[ $vars['outsideFormId'] ]['classname'];
             }
@@ -48,21 +53,26 @@ class wpFvfbFormIntegration {
             }
 
             if(method_exists('wpFvfbFormIntegration', $method) || method_exists($class_name, $method)) {
-                $list = $class_name::$method();
+                //$list = $class_name::$method();
+	            $list = call_user_func(array($class_name, $method));
                // var_dump($list);
+/*
+	            echo '<pre>';
+	            print_r($list);
+	            echo '</pre>';*/
 
                 if(!empty($list)) {
                     if(!empty($list['forms'])) {
                         if($list['multi'] === true) {
                             $output .= '<select name="form_listing[' . $vars['buttonNumber'] . ']">';
-                            $output .= '<option value="">Select Form</option>';
-                            foreach ($list['forms'] as $key => $form) {
-                                if($selectedForm == $key) {
-                                    $output .= '<option selected value="'.$key.'">'.$form.'</option>';
-                                } else {
-                                    $output .= '<option value="'.$key.'">'.$form.'</option>';
-                                }
-                            }
+                                $output .= '<option value="">Select Form</option>';
+	                            foreach ($list['forms'] as $key => $form) {
+	                                if($selectedForm == $key) {
+	                                    $output .= '<option selected value="'.$key.'">'.$form.'</option>';
+	                                } else {
+	                                    $output .= '<option value="'.$key.'">'.$form.'</option>';
+	                                }
+	                            }
                             $output .= '</select>';
                         }
                     } else {
@@ -92,28 +102,27 @@ class wpFvfbFormIntegration {
      */
     public static function getFormPlugins() {
         $plugins = array(
-            'cforms' => array(
-                'title' => 'CForms',
-                'pluginFile' => 'cforms/cforms.php',
-                'formListingFunction' => 'cformsList',
-                'formDisplayFunction' => 'cformsDisplay',
+            'cforms'            => array(
+                'title'                 => 'CForms',
+                'pluginFile'            => 'cforms/cforms.php',
+                'formListingFunction'   => 'cformsList',
+                'formDisplayFunction'   => 'cformsDisplay',
             ),
-            'contact-form-7' => array(
-                'title' => 'Contact Form 7',
-                'pluginFile' => 'contact-form-7/wp-contact-form-7.php',
-                'formListingFunction' => 'cf7List',
-                'formDisplayFunction' => 'cf7Display',
+            'contact-form-7'    => array(
+                'title'                 => 'Contact Form 7',
+                'pluginFile'            => 'contact-form-7/wp-contact-form-7.php',
+                'formListingFunction'   => 'cf7List',
+                'formDisplayFunction'   => 'cf7Display',
             ),
-            'si-contact-form' => array(
-                'title' => 'Fast Secure Contact Form',
-                'pluginFile' => 'si-contact-form/si-contact-form.php',
-                'formListingFunction' => 'sicfList',
-                'formDisplayFunction' => 'sicfDisplay',
-            ),
-
+            'si-contact-form'   => array(
+                'title'                 => 'Fast Secure Contact Form',
+                'pluginFile'            => 'si-contact-form/si-contact-form.php',
+                'formListingFunction'   => 'sicfList',
+                'formDisplayFunction'   => 'sicfDisplay',
+            )
         );
 
-        return apply_filters('cbxfixedvbtn_add_form_params' ,$plugins );
+        return apply_filters('cbxfixedvbtn_add_form_params', $plugins );
     }
 
     /**
@@ -159,7 +168,7 @@ class wpFvfbFormIntegration {
                     $forms['multi'] = true;
 
                     foreach($items as $item) {
-                        $forms['forms'][$item->id] = $item->title;
+                        $forms['forms'][$item->id()] = $item->title();
                     }
 
                 } else {
@@ -228,12 +237,13 @@ class wpFvfbFormIntegration {
 
         if( !empty($formId) and is_plugin_active('contact-form-7/wp-contact-form-7.php') ) {
             $wpcf7_contact_form = wpcf7_contact_form( $formId );
-            $unit_tag = 'wpcf7-f' . $wpcf7_contact_form->id . '-' . $processing_within . '-o' . $unit_count;
+            //$unit_tag = 'wpcf7-f' . $wpcf7_contact_form->id . '-' . $processing_within . '-o' . $unit_count;
            // $wpcf7_contact_form->unit_tag = $unit_tag;
 
             $_wpcf7 = array(
-		'loaderUrl' => wpcf7_ajax_loader(),
-		'sending' => __( 'Sending ...', 'wpcf7' ) );
+				'loaderUrl' => wpcf7_ajax_loader(),
+				'sending' => __( 'Sending ...', 'wpcf7' )
+            );
 
             if ( defined( 'WP_CACHE' ) && WP_CACHE )
                 $_wpcf7['cached'] = 1;

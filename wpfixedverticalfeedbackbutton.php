@@ -5,12 +5,12 @@
   Plugin URI: http://codeboxr.com/product/fixed-vertical-feedback-button-for-wordpress
   Description: Fixed Vertical feedback button for wordpress with custom forms intergation
   Author: Codeboxr
-  Version: 3.3
+  Version: 3.4
   Author URI: http://codeboxr.com
  */
 /*
   Copyright 2010-2015  Codeboxr (email : sabuj@codeboxr.com)
-  Last Update: 15.02.2015
+  Last Update: 13.05.2015
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -116,9 +116,10 @@ class cbWordpressFixedVerticalFeedbackButton {
                 'bilink'            => array('', '', '', '', ''),
                 'bctext'            => array('Feedback', 'Feedback', 'Feedback', 'Feedback', 'Feedback'),
                 'biheight'          => array('', '', '', '', ''),
-                'showcontactform'   => array(0, 0, 0, 0, 0),
+                //'showcontactform'   => array(0, 0, 0, 0, 0),
                 'form_open' 		=> array('no', 'no', 'no', 'no', 'no'),
                 'choose_form'       => array('', '', '', '', ''),
+	            'form_listing'      => array('', '', '', '', '')
             )
         );
 		
@@ -198,9 +199,9 @@ class cbWordpressFixedVerticalFeedbackButton {
 
         wp_enqueue_style('colorpickercss', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/colorpicker/css/colorpicker.css', '', '1.0');
 
-        wp_enqueue_style('jquery-uniform-style', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/uniform.aristo.min.css', array());
+        //wp_enqueue_style('jquery-uniform-style', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/uniform.aristo.min.css', array());
         //wp_enqueue_style('jquery-chosen-style', WP_PLUGIN_URL.'/wpfixedverticalfeedbackbutton/css/chosen.min.css', array());
-        wp_enqueue_style('jquery-selectize-style', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/jquery.selectize.css', array());
+        //wp_enqueue_style('jquery-selectize-style', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/jquery.selectize.css', array());
         wp_enqueue_style('wpfixedverticalfeedbackbuttonadmin', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/wpfixedverticalfeedbackbuttonadmin.css', '', '1.0');
 
     }
@@ -217,9 +218,9 @@ class cbWordpressFixedVerticalFeedbackButton {
         wp_enqueue_script( 'wp-color-picker');
 
 
-        wp_enqueue_script('jquery-uniform', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.uniform.js', array('jquery'));
+        //wp_enqueue_script('jquery-uniform', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.uniform.js', array('jquery'));
         //wp_enqueue_script('jquery-chosen', WP_PLUGIN_URL.'/wpfixedverticalfeedbackbutton/js/chosen.jquery.js', array('jquery'));
-        wp_enqueue_script('jquery-selectize', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.selectize.min.js', array('jquery'));
+        //wp_enqueue_script('jquery-selectize', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.selectize.min.js', array('jquery'));
         wp_enqueue_script('wpfixedverticalfeedbackbuttonform', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/wpfixedverticalfeedbackbuttonform.js', 'jquery', '1.0', false);
 
     }
@@ -229,6 +230,28 @@ class cbWordpressFixedVerticalFeedbackButton {
 
 
         $thirdPartyForms = wpFvfbFormIntegration::getFormPlugins();
+	/*
+	    'name'              => array('', '', '', '', ''),
+        'right'             => array(0, 1, 0, 1, 0),
+        'top'               => array(50, 50, 20, 20, 70),
+        'backcolor'         => array('#0066CC', '#0066CC', '#0066CC', '#0066CC', '#0066CC'),
+        'hbackcolor'        => array('#FF8B00', '#FF8B00', '#FF8B00', '#FF8B00', '#FF8B00'),
+        'id'                => array('', '', '', '', ''),
+        'clink'             => array('', '', '', '', ''),
+        'clinktitle'        => array('', '', '', '', ''),
+        'clinkopen'         => array('_blank', '_blank', '_blank', '_blank', '_blank'),
+        'show'              => array(1, 1, 1, 0, 0),
+        'showtype'          => array('show', 'show', 'show', 'show', 'show'),
+        'postlist'          => array('', '', '', '', ''),
+        'ver'               => array('1.0', '1.0', '1.0', '1.0', '1.0'),
+        'buttontext'        => array('feedback_mix.png', 'contact_small.png', 'care_share.png', 'be_social_small.png', 'callback_small.png'),
+        'bilink'            => array('', '', '', '', ''),
+        'bctext'            => array('Feedback', 'Feedback', 'Feedback', 'Feedback', 'Feedback'),
+        'biheight'          => array('', '', '', '', ''),
+        //'showcontactform'   => array(0, 0, 0, 0, 0),
+        'form_open' 		=> array('no', 'no', 'no', 'no', 'no'),
+        'choose_form'       => array('', '', '', '', '')
+		    */
 
         $defaultval = array(
             'name'            => '',
@@ -239,15 +262,15 @@ class cbWordpressFixedVerticalFeedbackButton {
             'id'              => '',
             'clink'           => '',
             'clinktitle'      => '',
-            'clinkopen'       => '',
+            'clinkopen'       => '_blank',
             'show'            => 1,
-            'showtype'        => '',
+            'showtype'        => 'show',
             'postlist'        => '',
             'buttontext'      => 'feedback_small.png',
             'bilink'          => '',
             'bctext'          => '',
             'biheight'        => '',
-            'showcontactform' => 0,
+            //'showcontactform' => 0,
             'form_open' 	  => 'no',
             'choose_form' => '',
             'form_listing' => '',
@@ -257,7 +280,7 @@ class cbWordpressFixedVerticalFeedbackButton {
 
             check_admin_referer('admin_head-settings_page_wpfixedverticalfeedbackbutton', 'wpfixedverticalfeedbackbutton');
 
-            $this->wpfixedverticalfeedbackbutton['adminpreview'] = $_POST['adminpreview'];
+            //$this->wpfixedverticalfeedbackbutton['adminpreview'] = $_POST['adminpreview'];
 
             if(class_exists('wpfixedverticalfeedbackbuttonaddon')){
 
@@ -284,32 +307,40 @@ class cbWordpressFixedVerticalFeedbackButton {
         <script type="text/javascript">
             var ajaxUrl = '<?php echo admin_url('admin-ajax.php'); ?>';
         </script>
-        <div class="wrap">
-            <div class="icon32" id="icon-options-general"><br></div>
-            <h2>Codeboxr Fixed Vertical Feedback Button</h2>
-            <div id="poststuff" class="metabox-holder has-right-sidebar">
-                <div id="post-body">
-                    <div id="post-body-content">
+	    <div class="wrap">
 
-                        <div class="stuffbox cb-fixedverticalbutton-wrapper">
-                            <h3>Plugin Settings</h3>
-                            <div class="inside">
-                                <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
-                                    <?php wp_nonce_field('admin_head-settings_page_wpfixedverticalfeedbackbutton', 'wpfixedverticalfeedbackbutton'); ?>
+		    <div id="icon-options-general" class="icon32"></div>
+		    <h2>Codeboxr Fixed Vertical Feedback Button</h2>
 
-                                    <p class="submit"><input type="submit" name="uwpfixedverticalfeedbackbutton" class="button-primary" value="Save Changes" ></p>
+		    <div id="poststuff">
+
+			    <div id="post-body" class="metabox-holder columns-2">
+
+				    <!-- main content -->
+				    <div id="post-body-content">
+
+					    <div class="meta-box-sortables ui-sortable">
+
+						    <div class="postbox">
+
+							    <h3><span>Plugin Setting</span></h3>
+							    <div class="inside">
+								    <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+									    <?php wp_nonce_field('admin_head-settings_page_wpfixedverticalfeedbackbutton', 'wpfixedverticalfeedbackbutton'); ?>
+
+									    <p class="submit"><input type="submit" name="uwpfixedverticalfeedbackbutton" class="button-primary" value="Save Changes" ></p>
 
 
-        <?php
-        //call function for unlimited button input field
-        if(class_exists('wpfixedverticalfeedbackbuttonaddon')){
+									    <?php
+									    //call function for unlimited button input field
+									    if(class_exists('wpfixedverticalfeedbackbuttonaddon')){
 
-            wpfixedverticalfeedbackbuttonaddon::wpfixedverticalfeedbackbutton_addmore($this->wpfixedverticalfeedbackbutton['buttonno']);
-        }
-        for ($number = 0; $number < $this->wpfixedverticalfeedbackbutton['buttonno']; $number++) {
-            $n = $number + 1;
-            //echo '<div class="fvfeedbackhandler"><div class="fvfeedbackbuttontitle"><h3>'.($wpfixedverticalfeedbackbutton['buttoncon']['name'][$number]!='' ? $wpfixedverticalfeedbackbutton['buttoncon']['name'][$number]: 'Button '.$n).'</h3><span class="instr">Click to expand/collapse button properties.</span></div>
-            echo '<div class="fvfeedbackhandler" id="fvfeedbackhandler' . $number . '"><h3>' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['name'][$number] != '' ? $this->wpfixedverticalfeedbackbutton['buttoncon']['name'][$number] : 'Button ' . $n) . ' (' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['show'][$number] ? 'Enabled' : 'Disabled') . ')</h3>
+										    wpfixedverticalfeedbackbuttonaddon::wpfixedverticalfeedbackbutton_addmore($this->wpfixedverticalfeedbackbutton['buttonno']);
+									    }
+									    for ($number = 0; $number < $this->wpfixedverticalfeedbackbutton['buttonno']; $number++) {
+										    $n = $number + 1;
+										    //echo '<div class="fvfeedbackhandler"><div class="fvfeedbackbuttontitle"><h3>'.($wpfixedverticalfeedbackbutton['buttoncon']['name'][$number]!='' ? $wpfixedverticalfeedbackbutton['buttoncon']['name'][$number]: 'Button '.$n).'</h3><span class="instr">Click to expand/collapse button properties.</span></div>
+										    echo '<div class="fvfeedbackhandler" id="fvfeedbackhandler' . $number . '"><h3>' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['name'][$number] != '' ? $this->wpfixedverticalfeedbackbutton['buttoncon']['name'][$number] : 'Button ' . $n) . ' (' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['show'][$number] ? 'Enabled' : 'Disabled') . ')</h3>
                 <div class="fvfeedbackbuttonprop">
                     <table cellspacing="0" class="widefat post fixed">
 
@@ -324,7 +355,7 @@ class cbWordpressFixedVerticalFeedbackButton {
                         <tr valign="top">
                             <td>Visibility</td>
                             <td>';
-                                echo '<input id="visibility-show-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['show'][$number], 1, false) . ' value="1" name="show[' . $number . ']" />
+										    echo '<input id="visibility-show-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['show'][$number], 1, false) . ' value="1" name="show[' . $number . ']" />
                                 <label for="visibility-show-' . $number . '">Show</label>
                                 <input id="visibility-hide-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['show'][$number], 0, false) . ' value="0" name="show[' . $number . ']" />
                                 <label for="visibility-hide-' . $number . '">Hide</label>
@@ -344,7 +375,7 @@ class cbWordpressFixedVerticalFeedbackButton {
                         <tr valign="top">
                             <td width="30%">Horizontal Align</td>
                             <td width="70%">';
-                                echo '<input autocomplete="off" id="right-1-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['right'][$number], 1, false) . ' value="1" name="right[' . $number . ']" />
+										    echo '<input autocomplete="off" id="right-1-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['right'][$number], 1, false) . ' value="1" name="right[' . $number . ']" />
                                         <label for="right-1-' . $number . '">Right</label>
                                         <input autocomplete="off" id="right-0-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['right'][$number], 0, false) . ' value="0" name="right[' . $number . ']" />
                                         <label for="right-0-' . $number . '">Left</label>
@@ -419,13 +450,13 @@ class cbWordpressFixedVerticalFeedbackButton {
                                     <p class="description">To use custom link leave the post/page id blank</p>
                                     </td>
                                 </tr>';
-                                if(class_exists('wpfixedverticalfeedbackbuttonaddon')){
+										    if(class_exists('wpfixedverticalfeedbackbuttonaddon')){
 
-                                    wpfixedverticalfeedbackbuttonaddon::wpfixedverticalfeedbackbutton_formintegrationfields($number,$this->wpfixedverticalfeedbackbutton,$thirdPartyForms);
-                                }
+											    wpfixedverticalfeedbackbuttonaddon::wpfixedverticalfeedbackbutton_formintegrationfields($number,$this->wpfixedverticalfeedbackbutton,$thirdPartyForms);
+										    }
 
 
-                               echo '
+										    echo '
                                 <tr valign="top">
                                     <td>Link title</td>
                                     <td>
@@ -460,114 +491,127 @@ class cbWordpressFixedVerticalFeedbackButton {
                         <div class="cbclear"></div>
                     </div>
                 </div>';
-        }
-        ?>
-                                </form>
-                            </div> <!-- inside -->
-                        </div>  <!-- stuffbox -->
-                    </div>
-                </div> <!-- post-body -->
-                <div id="side-info-column" class="inner-sidebar">
-                    <?php
-                        $plugin_data = get_plugin_data(__FILE__);
-                    ?>
-                    <div class="postbox">
-                        <h3>Plugin Info</h3>
-                        <div class="inside">
-                            <p>Plugin Name : <?php echo $plugin_data['Title'] ?> <?php echo $plugin_data['Version'] ?></p>
-                            <p>Author : <?php echo $plugin_data['Author'] ?></p>
-                            <p>Website : <a href="http://codeboxr.com" target="_blank">codeboxr.com</a></p>
-                            <p>Email : <a href="mailto:info@codeboxr.com" target="_blank">info@codeboxr.com</a></p>
-                            <p>Twitter : @<a href="http://twitter.com/codeboxr" target="_blank">Codeboxr</a></p>
-                            <p>Facebook : <a href="http://facebook.com/codeboxr" target="_blank">http://facebook.com/codeboxr</a></p>
-                            <p>Linkedin : <a href="www.linkedin.com/company/codeboxr" target="_blank">codeboxr</a></p>
-                            <p>Gplus : <a href="https://plus.google.com/+codeboxr" target="_blank">Google Plus</a></p>
-                            <p>Youtube : <a href="https://www.youtube.com/user/codeboxrtv" target="_blank">Codeboxr TV</a></p>
-                        </div>
-                    </div>
-                    <div class="postbox">
-                        <h3>Help & Supports</h3>
-                        <div class="inside">
-                            <p>Support: <a href="http://codeboxr.com/contact-us.html" target="_blank">Contact Us</a></p>
-                            <p><i class="icon-envelope"></i> <a href="mailto:info@codeboxr.com">info@codeboxr.com</a></p>
-                            <p><i class="icon-phone"></i> <a href="tel:008801717308615">+8801717308615</a> (CEO, Sabuj Kundu)<br></p>
-                            
-                        </div>
-                    </div>
-                    <div class="postbox">
+									    }
+									    ?>
+								    </form>
+							    </div> <!-- .inside -->
+
+						    </div> <!-- .postbox -->
+
+					    </div> <!-- .meta-box-sortables .ui-sortable -->
+
+				    </div> <!-- post-body-content -->
+				    <?php $plugin_data = get_plugin_data(__FILE__); ?>
+				    <!-- sidebar -->
+				    <div id="postbox-container-1" class="postbox-container">
+
+					    <div class="meta-box-sortables">
+
+						    <div class="postbox">
+
+							    <h3>Plugin Info</h3>
+							    <div class="inside">
+								    <p>Plugin Name : <?php echo $plugin_data['Title'] ?> <?php echo $plugin_data['Version'] ?></p>
+								    <p>Author : <?php echo $plugin_data['Author'] ?></p>
+								    <p>Website : <a href="http://codeboxr.com" target="_blank">codeboxr.com</a></p>
+								    <p>Email : <a href="mailto:info@codeboxr.com" target="_blank">info@codeboxr.com</a></p>
+								    <p>Twitter : @<a href="http://twitter.com/codeboxr" target="_blank">Codeboxr</a></p>
+								    <p>Facebook : <a href="http://facebook.com/codeboxr" target="_blank">http://facebook.com/codeboxr</a></p>
+								    <p>Linkedin : <a href="www.linkedin.com/company/codeboxr" target="_blank">codeboxr</a></p>
+								    <p>Gplus : <a href="https://plus.google.com/+codeboxr" target="_blank">Google Plus</a></p>
+								    <p>Youtube : <a href="https://www.youtube.com/user/codeboxrtv" target="_blank">Codeboxr TV</a></p>
+							    </div>
+						    </div> <!-- .postbox -->
+						    <div class="postbox">
+							    <h3>Help & Supports</h3>
+							    <div class="inside">
+								    <p>Support: <a href="http://codeboxr.com/contact-us.html" target="_blank">Contact Us</a></p>
+								    <p><i class="icon-envelope"></i> <a href="mailto:info@codeboxr.com">info@codeboxr.com</a></p>
+								    <p><i class="icon-phone"></i> <a href="tel:008801717308615">+8801717308615</a> (CEO, Sabuj Kundu)<br></p>
+
+							    </div>
+						    </div>
+						    <!--div class="postbox">
                         <h3>Video demo</h3>
                         <div class="inside">
                             <iframe src="http://www.screenr.com/embed/2Ow7" width="260" height="158" frameborder="0"></iframe>
                         </div>
-                    </div>
-                    <div class="postbox">
-                        <h3>Pro Version Features</h3>
-                        <div class="inside">
-                            <ul>
-	                            <li> 
-	                            	Supports 5 Different Contact forms <a href="http://wordpress.org/plugins/si-contact-form" target="_blank">Fast Secure Contact Form</a>, <a href="http://www.deliciousdays.com/cforms-plugin" target="_blank">CForms II</a>, <a href="http://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a>, <a href="https://wordpress.org/plugins/ninja-forms/" target="_blank">Ninja Form</a>, <a href="http://www.gravityforms.com/" target="_blank">Gravity Form</a>
-	                            </li>
-	                            <li>Unlimited Buttons</li>
-                            </ul>
-                        </div>
-                    </div>
+                    </div-->
+						    <div class="postbox">
+							    <h3>Pro Version Features</h3>
+							    <div class="inside">
+								    <ul>
+									    <li>
+										    Supports 5 Different Contact forms <a href="http://wordpress.org/plugins/si-contact-form" target="_blank">Fast Secure Contact Form</a>, <a href="http://www.deliciousdays.com/cforms-plugin" target="_blank">CForms II</a>, <a href="http://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a>, <a href="https://wordpress.org/plugins/ninja-forms/" target="_blank">Ninja Form</a>, <a href="http://www.gravityforms.com/" target="_blank">Gravity Form</a>
+									    </li>
+									    <li>Unlimited Buttons</li>
+								    </ul>
+							    </div>
+						    </div>
 
 
-                    <div class="postbox">
-                        <h3>Codeboxr Updates</h3>
-                        <div class="inside">
-						        <?php
+						    <div class="postbox">
+							    <h3>Codeboxr Updates</h3>
+							    <div class="inside">
+								    <?php
 
-						        include_once(ABSPATH . WPINC . '/feed.php');
-						        if (function_exists('fetch_feed')) {
-						            $feed = fetch_feed('http://codeboxr.com/feed');
-						            // $feed = fetch_feed('http://feeds.feedburner.com/codeboxr'); // this is the external website's RSS feed URL
-						            if (!is_wp_error($feed)) : $feed->init();
-						                $feed->set_output_encoding('UTF-8'); // this is the encoding parameter, and can be left unchanged in almost every case
-						                $feed->handle_content_type(); // this double-checks the encoding type
-						                $feed->set_cache_duration(21600); // 21,600 seconds is six hours
-						                $limit = $feed->get_item_quantity(6); // fetches the 18 most recent RSS feed stories
-						                $items = $feed->get_items(0, $limit); // this sets the limit and array for parsing the feed
+								    include_once(ABSPATH . WPINC . '/feed.php');
+								    if (function_exists('fetch_feed')) {
+									    $feed = fetch_feed('http://codeboxr.com/feed');
+									    // $feed = fetch_feed('http://feeds.feedburner.com/codeboxr'); // this is the external website's RSS feed URL
+									    if (!is_wp_error($feed)) : $feed->init();
+										    $feed->set_output_encoding('UTF-8'); // this is the encoding parameter, and can be left unchanged in almost every case
+										    $feed->handle_content_type(); // this double-checks the encoding type
+										    $feed->set_cache_duration(21600); // 21,600 seconds is six hours
+										    $limit = $feed->get_item_quantity(6); // fetches the 18 most recent RSS feed stories
+										    $items = $feed->get_items(0, $limit); // this sets the limit and array for parsing the feed
 
-						                $blocks = array_slice($items, 0, 6); // Items zero through six will be displayed here
-						                echo '<ul>';
-						                foreach ($blocks as $block) {
-						                    $url = $block->get_permalink();
-						                    echo '<li><a target="_blank" href="' . $url . '">';
-						                    echo '<strong>' . $block->get_title() . '</strong></a></li>';
-						                    //var_dump($block->get_description());
-						                    //echo $block->get_description();
-						                    //echo substr($block->get_description(),0, strpos($block->get_description(), "<br />")+4);
-						                }//end foreach
-						                echo '</ul>';
+										    $blocks = array_slice($items, 0, 6); // Items zero through six will be displayed here
+										    echo '<ul>';
+										    foreach ($blocks as $block) {
+											    $url = $block->get_permalink();
+											    echo '<li><a target="_blank" href="' . $url . '">';
+											    echo '<strong>' . $block->get_title() . '</strong></a></li>';
+											    //var_dump($block->get_description());
+											    //echo $block->get_description();
+											    //echo substr($block->get_description(),0, strpos($block->get_description(), "<br />")+4);
+										    }//end foreach
+										    echo '</ul>';
 
 
-						            endif;
-						        }
-						        ?>
-                        </div>
-                    </div>
-                   
-                    <div class="postbox">
-                        <h3>Codeboxr on facebook</h3>
-                        <div class="inside">
-                            <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodeboxr&amp;width=260&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=558248797526834" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
-                        </div>
-                    </div>
-                </div> <!-- side-info-column -->
-            </div> <!-- poststuff -->
-        </div> <!-- wrap -->
+									    endif;
+								    }
+								    ?>
+							    </div>
+						    </div>
+
+						    <div class="postbox">
+							    <h3>Codeboxr on facebook</h3>
+							    <div class="inside">
+								    <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodeboxr&amp;width=260&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=558248797526834" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
+							    </div>
+						    </div>
+					    </div> <!-- .meta-box-sortables -->
+
+				    </div> <!-- #postbox-container-1 .postbox-container -->
+
+			    </div> <!-- #post-body .metabox-holder .columns-2 -->
+
+			    <br class="clear">
+		    </div> <!-- #poststuff -->
+
+	    </div> <!-- .wrap -->
 
         <script type="text/javascript">
-              jQuery(document).ready(function() {
+              jQuery(document).ready(function($) {
                   //jQuery(".fvfeedbackbuttonprop").hide();
                   //toggle the componenet with class msg_body
-                  jQuery("#fvfeedbackhandler0 h3").parent(".fvfeedbackhandler").toggleClass("fvfeedbackhandlert");
-                  jQuery("#fvfeedbackhandler0 h3").next(".fvfeedbackbuttonprop").slideToggle();
-                  jQuery(".fvfeedbackhandler  h3").click(function()
-                  {
-                      jQuery(this).parent(".fvfeedbackhandler").toggleClass("fvfeedbackhandlert");
-                      jQuery(this).next(".fvfeedbackbuttonprop").slideToggle();
+                  $("#fvfeedbackhandler0 h3").parent(".fvfeedbackhandler").toggleClass("fvfeedbackhandlert");
+	              $("#fvfeedbackhandler0 h3").next(".fvfeedbackbuttonprop").slideToggle();
+	              $(".fvfeedbackhandler  h3").click(function(){
+
+		              $(this).parent(".fvfeedbackhandler").toggleClass("fvfeedbackhandlert");
+		              $(this).next(".fvfeedbackbuttonprop").slideToggle();
 
                   });
               });
@@ -814,18 +858,7 @@ class cbWordpressFixedVerticalFeedbackButton {
                                                 <div class="form-footer">
 
                                                 </div>
-                                                <!--a class="close-reveal-modal">&#215;</a-->
-                                              </div>
-                                        <!--/div-->
-                                        <!--script type="text/javascript" src="'.WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.reveal.js'.'"></script>
-                                        <link media="all" type="text/css" href="'.WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/jquery.reveal.css'.'" id="nyroModal-css" rel="stylesheet">
-                                        <script type="text/javascript" src="'.WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/distrib.min.js'.'"></script>
-                                        <link media="all" type="text/css" href="'.WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/easybox.min.css'.'" id="nyroModal-css" rel="stylesheet">
-                                        <script type="text/javascript" src="'.WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.nyroModal.custom.min.js'.'"></script>
-                                        <link media="all" type="text/css" href="'.WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/nyroModal.css'.'" id="nyroModal-css" rel="stylesheet"-->
-                                        '
-                                        ;
-
+                                              </div>';
                                 $link = '#wpfvfbForm_'.$count;
                                 $class = ' displayForm displayForm_'.$count;
                                 //$anchorClass = 'nyroModal lightbox displayFormAnchor displayFormAnchor_'.$count.' ';
