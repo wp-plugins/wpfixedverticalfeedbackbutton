@@ -2,7 +2,36 @@
 
 jQuery(document).ready(function($) {
 
-    $('.select_buttontext').change(function() {
+    $("#fvfeedbackhandler0 h3").parent(".fvfeedbackhandler").toggleClass("fvfeedbackhandlert");
+    $("#fvfeedbackhandler0 h3").next(".fvfeedbackbuttonprop").slideToggle();
+    $(".fvfeedbackhandler  h3").click(function(){
+
+        $(this).parent(".fvfeedbackhandler").toggleClass("fvfeedbackhandlert");
+        $(this).next(".fvfeedbackbuttonprop").slideToggle();
+
+    });
+
+    $('.cbxfeedbackimage').click(function(e) {
+        e.preventDefault();
+        var $imagefiled = $(this);
+        var image = wp.media({
+            title: 'Upload Image',
+            // mutiple: true if you want to upload multiple files at once
+            multiple: false
+        }).open()
+            .on('select', function(e){
+                // This will return the selected image from the Media Uploader, the result is an object
+                var uploaded_image = image.state().get('selection').first();
+                // We convert uploaded_image to a JSON object to make accessing it easier
+                // Output to the console uploaded_image
+                //console.log(uploaded_image);
+                var image_url = uploaded_image.toJSON().url;
+                // Let's assign the url value to the input field
+                $imagefiled.val(image_url);
+            });
+    });
+
+    $('.cbxfeedbackbuttontext').change(function() {
 		var val = $(this).val();
 		var selnumber = $(this).attr('data-selnumber');
 		//console.log(this);			
@@ -22,7 +51,7 @@ jQuery(document).ready(function($) {
 		}
     });
 
-    $('.select_buttontext').each(function() {
+    $('.cbxfeedbackbuttontext').each(function() {
 
 		var val = $(this).val();
 		var selnumber = $(this).attr('data-selnumber');
@@ -42,6 +71,7 @@ jQuery(document).ready(function($) {
 		    $('div.for_custom_text'+selnumber).hide();
 		}
     });
+
 
     //$('.for_custom_image').show();
 

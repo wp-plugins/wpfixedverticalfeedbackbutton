@@ -1,0 +1,406 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CBX Fixed Vertical Feedback Button v3.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-06-12 11:51:36+0000\n"
+"Last-Translator: manchumahara <sabuj@codeboxr.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED KINGDOM\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: formIntegration.php:82
+#@ wpfixedverticalfeedbackbutton
+msgid "No form has been made."
+msgstr ""
+
+#: formIntegration.php:90
+#@ wpfixedverticalfeedbackbutton
+msgid "Plugin is not activated or No form has been made."
+msgstr ""
+
+#: formIntegration.php:178
+#@ wpfixedverticalfeedbackbutton
+msgid "The plugin definition is changed by the plugin author. Please contact to the plugin(Feedback Button) administrator"
+msgstr ""
+
+#: formIntegration.php:245
+#@ wpcf7
+msgid "Sending ..."
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:191
+#: wpfixedverticalfeedbackbutton.php:315
+#@ wpfixedverticalfeedbackbutton
+msgid "CBX Fixed Vertical Feedback Button"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:191
+#@ wpfixedverticalfeedbackbutton
+msgid "Vertical Feedback"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:305
+#@ wpfixedverticalfeedbackbutton
+msgid "Options updated"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:315
+#: wpfixedverticalfeedbackbutton.php:557
+#@ wpfixedverticalfeedbackbutton
+msgid "Grab the Pro Version"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:351
+#@ wpfixedverticalfeedbackbutton
+msgid "Button name"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:354
+#@ wpfixedverticalfeedbackbutton
+msgid "Name of the button"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:358
+#@ wpfixedverticalfeedbackbutton
+msgid "Visibility"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:361
+#@ wpfixedverticalfeedbackbutton
+msgid "Show"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:363
+#@ wpfixedverticalfeedbackbutton
+msgid "Hide"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:365
+#@ wpfixedverticalfeedbackbutton
+msgid "Show/hide button, no need deactivate plugin to hide the button for some days."
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:368
+#@ wpfixedverticalfeedbackbutton
+msgid "Show only in following post(s)"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:370
+#@ wpfixedverticalfeedbackbutton
+msgid "Hide in following post(s)"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:373
+#@ wpfixedverticalfeedbackbutton
+msgid "Put the post IDs here."
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:374
+#@ wpfixedverticalfeedbackbutton
+msgid "Post the post IDs here to show/hide for particular pages/posts. <b>Comma(,)</b> separated list. Leave the list blank for no filter."
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:381
+#@ wpfixedverticalfeedbackbutton
+msgid "Right"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:383
+#@ wpfixedverticalfeedbackbutton
+msgid "Left"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:384
+#@ wpfixedverticalfeedbackbutton
+msgid "Button positon left or right"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:391
+#@ wpfixedverticalfeedbackbutton
+msgid "Vertical position as percentage, don't put %, just put something like 50 0r 60"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:395
+#@ wpfixedverticalfeedbackbutton
+msgid "Background Color"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:398
+#@ wpfixedverticalfeedbackbutton
+msgid "Background color of feedback button"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:405
+#@ wpfixedverticalfeedbackbutton
+msgid "Background color of feedback button when mouse hover"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:412
+#@ wpfixedverticalfeedbackbutton
+msgid "Contact"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:413
+#@ wpfixedverticalfeedbackbutton
+msgid "be social. share!"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:414
+#@ wpfixedverticalfeedbackbutton
+msgid "CALL BACK"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:415
+#@ wpfixedverticalfeedbackbutton
+msgid "call back"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:416
+#@ wpfixedverticalfeedbackbutton
+msgid "care for share?"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:417
+#@ wpfixedverticalfeedbackbutton
+msgid "COMENTARIOS-FEEDBACK"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:418
+#@ wpfixedverticalfeedbackbutton
+msgid "COMENTARIOS"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:419
+#@ wpfixedverticalfeedbackbutton
+msgid "CONTACT"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:420
+#@ wpfixedverticalfeedbackbutton
+msgid "CONTACT US"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:421
+#: wpfixedverticalfeedbackbutton.php:529
+#@ wpfixedverticalfeedbackbutton
+msgid "Contact Us"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:422
+#@ wpfixedverticalfeedbackbutton
+msgid "FEEDBACK"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:423
+#@ wpfixedverticalfeedbackbutton
+msgid "Feedback"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:425
+#@ wpfixedverticalfeedbackbutton
+msgid "REQUEST A CALL BACK"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:426
+#@ wpfixedverticalfeedbackbutton
+msgid "Request a call back"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:427
+#@ wpfixedverticalfeedbackbutton
+msgid "Custom Image..."
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:428
+#@ wpfixedverticalfeedbackbutton
+msgid "Custom Text..."
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:433
+#@ wpfixedverticalfeedbackbutton
+msgid "Select your button text. For customized text image put your image url and image height."
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:436
+#@ wpfixedverticalfeedbackbutton
+msgid "Custom text:  "
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:443
+#@ wpfixedverticalfeedbackbutton
+msgid "Link Button to Post/Page (ID)"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:446
+#@ wpfixedverticalfeedbackbutton
+msgid "Put post or page id that you want to link as feedback or contact page, normally you should put page id"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:449
+#@ wpfixedverticalfeedbackbutton
+msgid "Custom link"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:452
+#@ wpfixedverticalfeedbackbutton
+msgid "To use custom link leave the post/page id blank"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:463
+#@ wpfixedverticalfeedbackbutton
+msgid "Link title"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:466
+#@ wpfixedverticalfeedbackbutton
+msgid "Title for the anchor tag."
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:473
+#@ wpfixedverticalfeedbackbutton
+msgid "Open in new tab"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:475
+#@ wpfixedverticalfeedbackbutton
+msgid "Open in same tab"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:476
+#@ wpfixedverticalfeedbackbutton
+msgid "Control openning link in same window or new tab."
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:513
+#@ wpfixedverticalfeedbackbutton
+msgid "Plugin Info"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:515
+#@ wpfixedverticalfeedbackbutton
+msgid "Plugin Name"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:517
+#@ wpfixedverticalfeedbackbutton
+msgid "Website"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:518
+#@ wpfixedverticalfeedbackbutton
+msgid "Email"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:519
+#@ wpfixedverticalfeedbackbutton
+msgid "Twitter"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:520
+#@ wpfixedverticalfeedbackbutton
+msgid "Facebook"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:521
+#@ wpfixedverticalfeedbackbutton
+msgid "Linkedin"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:522
+#@ wpfixedverticalfeedbackbutton
+msgid "Gplus"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:523
+#@ wpfixedverticalfeedbackbutton
+msgid "Youtube"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:527
+#@ wpfixedverticalfeedbackbutton
+msgid "Help & Supports"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:529
+#: wpfixedverticalfeedbackbutton.php:921
+#@ wpfixedverticalfeedbackbutton
+msgid "Support"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:542
+#@ wpfixedverticalfeedbackbutton
+msgid "Pro Version Features"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:546
+#@ wpfixedverticalfeedbackbutton
+msgid "Supports 5 Different Contact forms"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:548
+#@ wpfixedverticalfeedbackbutton
+msgid "Fast Secure Contact Form"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:549
+#@ wpfixedverticalfeedbackbutton
+msgid "CForms II"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:550
+#@ wpfixedverticalfeedbackbutton
+msgid "Contact Form 7"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:551
+#@ wpfixedverticalfeedbackbutton
+msgid "Ninja Form"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:552
+#@ wpfixedverticalfeedbackbutton
+msgid "Gravity Form"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:555
+#@ wpfixedverticalfeedbackbutton
+msgid "Unlimited Buttons"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:563
+#@ wpfixedverticalfeedbackbutton
+msgid "WPBoxr Updates"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:602
+#@ wpfixedverticalfeedbackbutton
+msgid "Codeboxr Networks"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:603
+#@ wpfixedverticalfeedbackbutton
+msgid "Html, Wordpress & Joomla Themes"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:606
+#@ wpfixedverticalfeedbackbutton
+msgid "Wordpress Plugins"
+msgstr ""
+
+#: wpfixedverticalfeedbackbutton.php:919
+#@ wpfixedverticalfeedbackbutton
+msgid "Settings"
+msgstr ""
+

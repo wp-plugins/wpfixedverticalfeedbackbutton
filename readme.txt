@@ -1,10 +1,10 @@
 === CBX Fixed Vertical Feedback Button ===
-Contributors: manchumahara, codeboxr
-Donate link: http://codeboxr.com
-Tags: button ,form ,contact
+Contributors: manchumahara, codeboxr, wpboxr
+Donate link: http://wpboxr.com/donate
+Tags: button ,form ,contact, contact form, contact button, vertical form
 Requires at least: 3.0
-Tested up to: 4.2
-Stable tag: 3.4
+Tested up to: 4.2.2
+Stable tag: 3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,8 +27,14 @@ Features:
 
 Pro Version:
 
-There is a pro version of this plugin supported from our company site which supports unlimited buttons and supports 3 Different Contact forms Fast Secure Contact Form, CForms II, Contact Form 7
-See more details here http://codeboxr.com/product/fixed-vertical-feedback-button-for-wordpress
+There is a pro version of this plugin supported from our company site which supports unlimited buttons and supports 5 Different Contact forms
+- Fast Secure Contact Form,
+- CForms II
+- Contact Form 7
+- Ninja Form
+- Gravity Form
+
+See more details here http://wpboxr.com/product/fixed-vertical-feedback-button-for-wordpress
 
 
 == Installation ==
@@ -72,6 +78,9 @@ You  can set the position then button will be fixed at that position, just try i
 
 
 == Changelog ==
+= 3.5 =
+* Custom image field now support wordpress media upload
+* First time added translation
 = 3.4 =
 * Dynamic method call is now compatible with php version less than 5.3
 * Now the plugin setting page follows wordpress style responsive structure, still need more fine tune

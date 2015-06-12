@@ -2,15 +2,15 @@
 
 /*
   Plugin Name: CBX Fixed Vertical Feedback Button
-  Plugin URI: http://codeboxr.com/product/fixed-vertical-feedback-button-for-wordpress
-  Description: Fixed Vertical feedback button for wordpress with custom forms intergation
-  Author: Codeboxr
-  Version: 3.4
-  Author URI: http://codeboxr.com
+  Plugin URI: http://wpboxr.com/product/fixed-vertical-feedback-button-for-wordpress
+  Description: Fixed Vertical feedback button for wordpress with custom forms integration
+  Author: WPBoxr
+  Version: 3.5
+  Author URI: http://wpboxr.com
  */
 /*
-  Copyright 2010-2015  Codeboxr (email : sabuj@codeboxr.com)
-  Last Update: 13.05.2015
+  Copyright 2010-2015  WPBo r (email : info@wpboxr.com)
+  Last Update: 12.06.2015
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -75,6 +75,10 @@ class cbWordpressFixedVerticalFeedbackButton {
 
     // constructor
     function __construct() {
+
+	    //loading plugin text domain
+	    add_action('init', array($this, 'load_plugin_textdomain'));
+
         // button image list
         $this->buttondata                    = array(
             'be_social_small.png'        => 162,
@@ -150,6 +154,9 @@ class cbWordpressFixedVerticalFeedbackButton {
 
     }// end of constructor
 
+	public function load_plugin_textdomain(){
+		load_plugin_textdomain('wpfixedverticalfeedbackbutton', FALSE, dirname(plugin_basename(__FILE__)).'/languages/');
+	}
 
     //plugin activation action
     function wpfixedverticalfeedbackbutton_activate() {
@@ -181,7 +188,7 @@ class cbWordpressFixedVerticalFeedbackButton {
     function wpfixedverticalfeedbackbutton_admin() {
         // adding option page for plugin
         if (function_exists('add_options_page')) {
-            $page_hook = add_options_page('Codeboxr Fixed Vertical Feedback Button', 'Vertical Feedback', 'manage_options', 'wpfixedverticalfeedbackbutton', array($this, 'wpfixedverticalfeedbackbutton_admin_option'));
+            $page_hook = add_options_page(__('CBX Fixed Vertical Feedback Button','wpfixedverticalfeedbackbutton'), __('Vertical Feedback', 'wpfixedverticalfeedbackbutton'), 'manage_options', 'wpfixedverticalfeedbackbutton', array($this, 'wpfixedverticalfeedbackbutton_admin_option'));
 
             /* Using registered $page_hook handle to hook script load */
             add_action('admin_print_scripts-' . $page_hook, array($this, 'wpfixedverticalfeedbackbutton_admin_js'));
@@ -198,10 +205,6 @@ class cbWordpressFixedVerticalFeedbackButton {
 
 
         wp_enqueue_style('colorpickercss', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/colorpicker/css/colorpicker.css', '', '1.0');
-
-        //wp_enqueue_style('jquery-uniform-style', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/uniform.aristo.min.css', array());
-        //wp_enqueue_style('jquery-chosen-style', WP_PLUGIN_URL.'/wpfixedverticalfeedbackbutton/css/chosen.min.css', array());
-        //wp_enqueue_style('jquery-selectize-style', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/jquery.selectize.css', array());
         wp_enqueue_style('wpfixedverticalfeedbackbuttonadmin', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/css/wpfixedverticalfeedbackbuttonadmin.css', '', '1.0');
 
     }
@@ -210,17 +213,12 @@ class cbWordpressFixedVerticalFeedbackButton {
     function wpfixedverticalfeedbackbutton_admin_js() {
 
         wp_enqueue_script('jquery');
-        //wp_enqueue_script('bootstartp-modal-js', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/bootstrap.min.js', 'jquery', '1.0', false);
 
-        //wp_enqueue_script('colorpickerjs', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/colorpicker/js/colorpicker.js', 'jquery', '1.0', false);
-        //wp_enqueue_style( 'wp-color-picker' );
         wp_enqueue_style( 'wp-color-picker' );
         wp_enqueue_script( 'wp-color-picker');
 
 
-        //wp_enqueue_script('jquery-uniform', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.uniform.js', array('jquery'));
-        //wp_enqueue_script('jquery-chosen', WP_PLUGIN_URL.'/wpfixedverticalfeedbackbutton/js/chosen.jquery.js', array('jquery'));
-        //wp_enqueue_script('jquery-selectize', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/jquery.selectize.min.js', array('jquery'));
+
         wp_enqueue_script('wpfixedverticalfeedbackbuttonform', WP_PLUGIN_URL . '/wpfixedverticalfeedbackbutton/js/wpfixedverticalfeedbackbuttonform.js', 'jquery', '1.0', false);
 
     }
@@ -228,6 +226,10 @@ class cbWordpressFixedVerticalFeedbackButton {
     //admin option page
     function wpfixedverticalfeedbackbutton_admin_option() {
 
+	    // jQuery
+	    wp_enqueue_script('jquery');
+		// This will enqueue the Media Uploader script
+	    wp_enqueue_media();
 
         $thirdPartyForms = wpFvfbFormIntegration::getFormPlugins();
 	/*
@@ -272,8 +274,8 @@ class cbWordpressFixedVerticalFeedbackButton {
             'biheight'        => '',
             //'showcontactform' => 0,
             'form_open' 	  => 'no',
-            'choose_form' => '',
-            'form_listing' => '',
+            'choose_form'     => '',
+            'form_listing'    => '',
         );
 
         if (isset($_POST['uwpfixedverticalfeedbackbutton'])) {
@@ -284,7 +286,7 @@ class cbWordpressFixedVerticalFeedbackButton {
 
             if(class_exists('wpfixedverticalfeedbackbuttonaddon')){
 
-                wpfixedverticalfeedbackbuttonaddon::wpfixedverticalfeedbackbutton_update($defaultval,$this->defaults,$this->wpfixedverticalfeedbackbutton);
+                wpfixedverticalfeedbackbuttonaddon::wpfixedverticalfeedbackbutton_update($defaultval, $this->defaults,$this->wpfixedverticalfeedbackbutton);
             }
             else{
                 $this->wpfixedverticalfeedbackbutton['buttonno'] = $this->defaults['buttonno'];
@@ -300,7 +302,7 @@ class cbWordpressFixedVerticalFeedbackButton {
         
 
         if (isset($_POST['uwpfixedverticalfeedbackbutton'])) {
-            echo '<!-- Last Action --><div id="message" class="updated fade"><p>Options updated</p></div>';
+            echo '<!-- Last Action --><div id="message" class="updated fade"><p>'.__('Options updated','wpfixedverticalfeedbackbutton').'</p></div>';
         }
 
         ?>
@@ -310,7 +312,7 @@ class cbWordpressFixedVerticalFeedbackButton {
 	    <div class="wrap">
 
 		    <div id="icon-options-general" class="icon32"></div>
-		    <h2>Codeboxr Fixed Vertical Feedback Button</h2>
+		    <h2><?php _e('CBX Fixed Vertical Feedback Button','wpfixedverticalfeedbackbutton') ?> <a class="button" href="http://wpboxr.com/product/fixed-vertical-feedback-button-for-wordpress" target="_blank"><?php _e('Grab the Pro Version','wpfixedverticalfeedbackbutton') ?></a></h2>
 
 		    <div id="poststuff">
 
@@ -346,108 +348,108 @@ class cbWordpressFixedVerticalFeedbackButton {
 
                         <tbody>
                         <tr valign="top">
-                            <td>Button name</td>
+                            <td>'.__('Button name','wpfixedverticalfeedbackbutton').'</td>
                             <td>
                             <input type="text" name="name[' . $number . ']" value="' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['name'][$number] != '' ? $this->wpfixedverticalfeedbackbutton['buttoncon']['name'][$number] : '') . '" size="30" /><br />
-                            <p class="description">Name of the button</p>
+                            <p class="description">'.__('Name of the button','wpfixedverticalfeedbackbutton').'</p>
                             </td>
                         </tr>
                         <tr valign="top">
-                            <td>Visibility</td>
+                            <td>'.__('Visibility','wpfixedverticalfeedbackbutton').'</td>
                             <td>';
 										    echo '<input id="visibility-show-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['show'][$number], 1, false) . ' value="1" name="show[' . $number . ']" />
-                                <label for="visibility-show-' . $number . '">Show</label>
+                                <label for="visibility-show-' . $number . '">'.__('Show','wpfixedverticalfeedbackbutton').'</label>
                                 <input id="visibility-hide-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['show'][$number], 0, false) . ' value="0" name="show[' . $number . ']" />
-                                <label for="visibility-hide-' . $number . '">Hide</label>
+                                <label for="visibility-hide-' . $number . '">'.__('Hide','wpfixedverticalfeedbackbutton').'</label>
                                 <br/>
-                                <p class="description">Show/hide button, no need deactivate plugin to hide the button for some days.</p>
+                                <p class="description">'.__('Show/hide button, no need deactivate plugin to hide the button for some days.','wpfixedverticalfeedbackbutton').'</p>
                                 <br/>
                                 <input id="showtype-show-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['showtype'][$number], 'show', false) . ' value="show" name="showtype[' . $number . ']" />
-                                <label for="showtype-show-' . $number . '">Show only in following post(s)</label>
+                                <label for="showtype-show-' . $number . '">'.__('Show only in following post(s)','wpfixedverticalfeedbackbutton').'</label>
                                 <input id="showtype-hide-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['showtype'][$number], 'hide', false) . ' value="hide" name="showtype[' . $number . ']" />
-                                <label for="showtype-hide-' . $number . '">Hide in following post(s)</label>
+                                <label for="showtype-hide-' . $number . '">'.__('Hide in following post(s)','wpfixedverticalfeedbackbutton').'</label>
 
                                 <br/>
-                                <input type="text" name="postlist[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['postlist'][$number] . '" placeholder="Put the post IDs here.">
-                                <p class="description">Post the post IDs here to show/hide for particular pages/posts. <b>Comma(,)</b> separated list. Leave the list blank for no filter.</p>
+                                <input type="text" name="postlist[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['postlist'][$number] . '" placeholder="'.__('Put the post IDs here.','wpfixedverticalfeedbackbutton').'">
+                                <p class="description">'.__('Post the post IDs here to show/hide for particular pages/posts. <b>Comma(,)</b> separated list. Leave the list blank for no filter.','wpfixedverticalfeedbackbutton').'</p>
                             </td>
                         </tr>
                         <tr valign="top">
                             <td width="30%">Horizontal Align</td>
                             <td width="70%">';
 										    echo '<input autocomplete="off" id="right-1-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['right'][$number], 1, false) . ' value="1" name="right[' . $number . ']" />
-                                        <label for="right-1-' . $number . '">Right</label>
+                                        <label for="right-1-' . $number . '">'.__('Right','wpfixedverticalfeedbackbutton').'Right</label>
                                         <input autocomplete="off" id="right-0-' . $number . '" type="radio" ' . checked($this->wpfixedverticalfeedbackbutton['buttoncon']['right'][$number], 0, false) . ' value="0" name="right[' . $number . ']" />
-                                        <label for="right-0-' . $number . '">Left</label>
-                                        <p class="description">Button positon left or right</p>
+                                        <label for="right-0-' . $number . '">'.__('Left','wpfixedverticalfeedbackbutton').'</label>
+                                        <p class="description">'.__('Button positon left or right','wpfixedverticalfeedbackbutton').'</p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <td>Vertical Position</td>
                                     <td>
                                     <input type="number" name="top[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['top'][$number] . '" size="6" /><br />
-                                    <p class="description">Vertical position as percentage, don\'t put %, just put something like 50 0r 60</p>
+                                    <p class="description">'.__('Vertical position as percentage, don\'t put %, just put something like 50 0r 60','wpfixedverticalfeedbackbutton').'</p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
-                                    <td>Background Color</td>
+                                    <td>'.__('Background Color','wpfixedverticalfeedbackbutton').'</td>
                                     <td>
                                     <input class="cbcolor" data-default-color="#0066CC" type="text" name="backcolor[' . $number . ']" value="' .((strpos($this->wpfixedverticalfeedbackbutton['buttoncon']['backcolor'][$number], '#') === FALSE)? '#': '' ). $this->wpfixedverticalfeedbackbutton['buttoncon']['backcolor'][$number] . '" size="7" /><br />
-                                    <p class="description">Background color of feedback button</p>
+                                    <p class="description">'.__('Background color of feedback button','wpfixedverticalfeedbackbutton').'</p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <td>Background Color for mouse hover</td>
                                     <td>
                                     <input class="cbcolor" data-default-color="#FF8B00" type="text" name="hbackcolor[' . $number . ']" value="' .((strpos($this->wpfixedverticalfeedbackbutton['buttoncon']['hbackcolor'][$number], '#') === FALSE)? '#': '' ). $this->wpfixedverticalfeedbackbutton['buttoncon']['hbackcolor'][$number] . '" size="7" /><br />
-                                    <p class="description">Background color of feedback button when mouse hover</p>
+                                    <p class="description">'.__('Background color of feedback button when mouse hover','wpfixedverticalfeedbackbutton').'</p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <td width="30%">Button Text</td>
                                     <td width="70%" class="no-overflow">
-                                        <select data-selnumber="' . $number . '" name="buttontext[' . $number . ']" class="select_buttontext select_buttontext'.$number.'">
-                                            <option value="contact_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'contact_small.png' ? 'selected="selected"' : '' ) . ' >Contact</option>
-                                            <option value="be_social_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'be_social_small.png' ? 'selected="selected"' : '' ) . ' >be social. share!</option>
-                                            <option value="callback_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'callback_caps.png' ? 'selected="selected"' : '' ) . ' >CALL BACK</option>
-                                            <option value="callback_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'callback_small.png' ? 'selected="selected"' : '' ) . ' >call back</option>
-                                            <option value="care_share.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'care_share.png' ? 'selected="selected"' : '' ) . ' >care for share?</option>
-                                            <option value="COMENTARIOS-FEEDBACK.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'COMENTARIOS-FEEDBACK.png' ? 'selected="selected"' : '' ) . ' >COMENTARIOS-FEEDBACK</option>
-                                            <option value="COMENTARIOS.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'COMENTARIOS.png' ? 'selected="selected"' : '' ) . ' >COMENTARIOS</option>
-                                            <option value="contact_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'contact_caps.png' ? 'selected="selected"' : '' ) . ' >CONTACT</option>
-                                            <option value="contact_us_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'contact_us_caps.png' ? 'selected="selected"' : '' ) . ' >CONTACT US</option>
-                                            <option value="contact_us_mix.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'contact_us_mix.png' ? 'selected="selected"' : '' ) . ' >Contact Us</option>
-                                            <option value="feedback_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'feedback_caps.png' ? 'selected="selected"' : '' ) . ' >FEEDBACK</option>
-                                            <option value="feedback_mix.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'feedback_mix.png' ? 'selected="selected"' : '' ) . ' >Feedback</option>
-                                            <option value="feedback_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'feedback_small.png' ? 'selected="selected"' : '' ) . ' >feedback</option>
-                                            <option value="requestacallback_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'requestacallback_caps.png' ? 'selected="selected"' : '' ) . ' >REQUEST A CALL BACK</option>
-                                            <option value="requestacallback_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'requestacallback_small.png' ? 'selected="selected"' : '' ) . ' >Request a call back</option>
-                                            <option value="custom_img" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'custom_img' ? 'selected="selected"' : '' ) . ' >Custom Image...</option>
-                                            <option value="custom_text" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'custom_text' ? 'selected="selected"' : '' ) . ' >Custom Text...</option>
+                                        <select data-selnumber="' . $number . '" name="buttontext[' . $number . ']" class="cbxfeedbackbuttontext select_buttontext select_buttontext'.$number.'">
+                                            <option value="contact_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'contact_small.png' ? 'selected="selected"' : '' ) . ' >'.__('Contact','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="be_social_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'be_social_small.png' ? 'selected="selected"' : '' ) . ' >'.__('be social. share!','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="callback_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'callback_caps.png' ? 'selected="selected"' : '' ) . ' >'.__('CALL BACK','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="callback_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'callback_small.png' ? 'selected="selected"' : '' ) . ' >'.__('call back','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="care_share.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'care_share.png' ? 'selected="selected"' : '' ) . ' >'.__('care for share?','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="COMENTARIOS-FEEDBACK.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'COMENTARIOS-FEEDBACK.png' ? 'selected="selected"' : '' ) . ' >'.__('COMENTARIOS-FEEDBACK','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="COMENTARIOS.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'COMENTARIOS.png' ? 'selected="selected"' : '' ) . ' >'.__('COMENTARIOS','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="contact_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'contact_caps.png' ? 'selected="selected"' : '' ) . ' >'.__('CONTACT','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="contact_us_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'contact_us_caps.png' ? 'selected="selected"' : '' ) . ' >'.__('CONTACT US','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="contact_us_mix.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'contact_us_mix.png' ? 'selected="selected"' : '' ) . ' >'.__('Contact Us','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="feedback_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'feedback_caps.png' ? 'selected="selected"' : '' ) . ' >'.__('FEEDBACK','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="feedback_mix.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'feedback_mix.png' ? 'selected="selected"' : '' ) . ' >'.__('Feedback','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="feedback_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'feedback_small.png' ? 'selected="selected"' : '' ) . ' >'.__('','wpfixedverticalfeedbackbutton').'feedback</option>
+                                            <option value="requestacallback_caps.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'requestacallback_caps.png' ? 'selected="selected"' : '' ) . ' >'.__('REQUEST A CALL BACK','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="requestacallback_small.png" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'requestacallback_small.png' ? 'selected="selected"' : '' ) . ' >'.__('Request a call back','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="custom_img" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'custom_img' ? 'selected="selected"' : '' ) . ' >'.__('Custom Image...','wpfixedverticalfeedbackbutton').'</option>
+                                            <option value="custom_text" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext'][$number] == 'custom_text' ? 'selected="selected"' : '' ) . ' >'.__('Custom Text...','wpfixedverticalfeedbackbutton').'</option>
                                         </select>
                                         <div class="for_custom_image for_custom_image'.$number.'" >
-                                            Image URL: <input type="text" name="bilink[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['bilink'][$number] . '" size="25" /><br />
+                                            Image URL: <input class="cbxfeedbackimage" type="text" name="bilink[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['bilink'][$number] . '" size="25" /><br />
                                             Image height: <input type="text" name="biheight[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['biheight'][$number] . '" size="6" />px<br />
-                                            <p class="description">Select your button text. For customized text image put your image url and image height.</p>
+                                            <p class="description">'.__('Select your button text. For customized text image put your image url and image height.','wpfixedverticalfeedbackbutton').'</p>
                                         </div>
                                         <div class="for_custom_text for_custom_text'.$number.'" >
-                                            Custom text:  <input type="text" name="bctext[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['bctext'][$number] . '" size="25" />
+                                            '.__('Custom text:  ','wpfixedverticalfeedbackbutton').'<input type="text" name="bctext[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['bctext'][$number] . '" size="25" />
                                         </div>
                                     </td>
                                 </tr>
 
 
                                 <tr valign="top">
-                                    <td>Link Button to Post/Page (ID)</td>
+                                    <td>'.__('Link Button to Post/Page (ID)','wpfixedverticalfeedbackbutton').'</td>
                                     <td>
                                     <input type="text" name="id[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['id'][$number] . '" size="6" /><br />
-                                    <p class="description">Put post or page id that you want to link as feedback or contact page, normally you should put page id</p></td>
+                                    <p class="description">'.__('Put post or page id that you want to link as feedback or contact page, normally you should put page id','wpfixedverticalfeedbackbutton').'</p></td>
                                 </tr>
                                 <tr valign="top">
-                                    <td>Custom link</td>
+                                    <td>'.__('Custom link','wpfixedverticalfeedbackbutton').'</td>
                                     <td>
                                     <input type="text" name="clink[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['clink'][$number] . '" size="30" /><br />
-                                    <p class="description">To use custom link leave the post/page id blank</p>
+                                    <p class="description">'.__('To use custom link leave the post/page id blank','wpfixedverticalfeedbackbutton').'</p>
                                     </td>
                                 </tr>';
 										    if(class_exists('wpfixedverticalfeedbackbuttonaddon')){
@@ -458,21 +460,20 @@ class cbWordpressFixedVerticalFeedbackButton {
 
 										    echo '
                                 <tr valign="top">
-                                    <td>Link title</td>
+                                    <td>'.__('Link title','wpfixedverticalfeedbackbutton').'</td>
                                     <td>
                                     <input type="text" name="clinktitle[' . $number . ']" value="' . $this->wpfixedverticalfeedbackbutton['buttoncon']['clinktitle'][$number] . '" size="30" /><br />
-                                    <p class="description">Title for the anchor tag.</p>
+                                    <p class="description">'.__('Title for the anchor tag.','wpfixedverticalfeedbackbutton').'</p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <td>Link target</td>
                                     <td>
                                     <input id="clinkopen-_blank-' . $number . '" type="radio" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['clinkopen'][$number] == '_blank' ? 'checked="checked"' : '' ) . ' value="_blank" name="clinkopen[' . $number . ']" />
-                                    <label for="clinkopen-_blank-' . $number . '">Open in new tab</label>
+                                    <label for="clinkopen-_blank-' . $number . '">'.__('Open in new tab','wpfixedverticalfeedbackbutton').'</label>
                                     <input id="clinkopen-_self-' . $number . '" type="radio" ' . ($this->wpfixedverticalfeedbackbutton['buttoncon']['clinkopen'][$number] == '_self' ? 'checked="checked"' : '' ) . ' value="_self" name="clinkopen[' . $number . ']" />
-                                    <label for="clinkopen-_self-' . $number . '">Open in same tab</label>
-
-                                    <p class="description">Control openning link in same window or new tab.</p>
+                                    <label for="clinkopen-_self-' . $number . '">'.__('Open in same tab','wpfixedverticalfeedbackbutton').'</label>
+                                    <p class="description">'.__('Control openning link in same window or new tab.','wpfixedverticalfeedbackbutton').'</p>
                                     </td>
                                 </tr>
 
@@ -509,24 +510,24 @@ class cbWordpressFixedVerticalFeedbackButton {
 
 						    <div class="postbox">
 
-							    <h3>Plugin Info</h3>
+							    <h3><?php _e('Plugin Info','wpfixedverticalfeedbackbutton'); ?></h3>
 							    <div class="inside">
-								    <p>Plugin Name : <?php echo $plugin_data['Title'] ?> <?php echo $plugin_data['Version'] ?></p>
-								    <p>Author : <?php echo $plugin_data['Author'] ?></p>
-								    <p>Website : <a href="http://codeboxr.com" target="_blank">codeboxr.com</a></p>
-								    <p>Email : <a href="mailto:info@codeboxr.com" target="_blank">info@codeboxr.com</a></p>
-								    <p>Twitter : @<a href="http://twitter.com/codeboxr" target="_blank">Codeboxr</a></p>
-								    <p>Facebook : <a href="http://facebook.com/codeboxr" target="_blank">http://facebook.com/codeboxr</a></p>
-								    <p>Linkedin : <a href="www.linkedin.com/company/codeboxr" target="_blank">codeboxr</a></p>
-								    <p>Gplus : <a href="https://plus.google.com/+codeboxr" target="_blank">Google Plus</a></p>
-								    <p>Youtube : <a href="https://www.youtube.com/user/codeboxrtv" target="_blank">Codeboxr TV</a></p>
+								    <p><?php _e('Plugin Name','wpfixedverticalfeedbackbutton') ?> : <?php echo $plugin_data['Title'] ?> <?php echo $plugin_data['Version'] ?></p>
+								    <!--p>Author : <?php echo $plugin_data['Author'] ?></p-->
+								    <p><?php _e('Website','wpfixedverticalfeedbackbutton'); ?> : <a href="http://wpboxr.com" target="_blank">wpboxr.com</a></p>
+								    <p><?php _e('Email','wpfixedverticalfeedbackbutton'); ?> : <a href="mailto:info@wpboxr.com" target="_blank">info@wpboxr.com</a></p>
+								    <p><?php _e('Twitter','wpfixedverticalfeedbackbutton'); ?> : @<a href="http://twitter.com/wpboxr" target="_blank">wpboxr</a></p>
+								    <p><?php _e('Facebook','wpfixedverticalfeedbackbutton'); ?> : <a href="http://facebook.com/wpboxr" target="_blank">http://facebook.com/wpboxr</a></p>
+								    <p><?php _e('Linkedin','wpfixedverticalfeedbackbutton'); ?> : <a href="www.linkedin.com/company/codeboxr" target="_blank">codeboxr</a></p>
+								    <p><?php _e('Gplus','wpfixedverticalfeedbackbutton'); ?> : <a href="https://plus.google.com/+wpboxr" target="_blank">Google Plus</a></p>
+								    <p><?php _e('Youtube','wpfixedverticalfeedbackbutton'); ?> : <a href="https://www.youtube.com/user/codeboxrtv" target="_blank">Codeboxr TV</a></p>
 							    </div>
 						    </div> <!-- .postbox -->
 						    <div class="postbox">
-							    <h3>Help & Supports</h3>
+							    <h3><?php _e('Help & Supports','wpfixedverticalfeedbackbutton'); ?></h3>
 							    <div class="inside">
-								    <p>Support: <a href="http://codeboxr.com/contact-us.html" target="_blank">Contact Us</a></p>
-								    <p><i class="icon-envelope"></i> <a href="mailto:info@codeboxr.com">info@codeboxr.com</a></p>
+								    <p><?php _e('Support','wpfixedverticalfeedbackbutton'); ?>: <a href="http://wpboxr.com/contact-us" target="_blank"><?php _e('Contact Us','wpfixedverticalfeedbackbutton'); ?></a></p>
+								    <p><i class="icon-envelope"></i> <a href="mailto:info@wpboxr.com">info@wpboxr.com</a></p>
 								    <p><i class="icon-phone"></i> <a href="tel:008801717308615">+8801717308615</a> (CEO, Sabuj Kundu)<br></p>
 
 							    </div>
@@ -538,26 +539,34 @@ class cbWordpressFixedVerticalFeedbackButton {
                         </div>
                     </div-->
 						    <div class="postbox">
-							    <h3>Pro Version Features</h3>
+							    <h3><?php _e('Pro Version Features','wpfixedverticalfeedbackbutton'); ?></h3>
 							    <div class="inside">
 								    <ul>
 									    <li>
-										    Supports 5 Different Contact forms <a href="http://wordpress.org/plugins/si-contact-form" target="_blank">Fast Secure Contact Form</a>, <a href="http://www.deliciousdays.com/cforms-plugin" target="_blank">CForms II</a>, <a href="http://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a>, <a href="https://wordpress.org/plugins/ninja-forms/" target="_blank">Ninja Form</a>, <a href="http://www.gravityforms.com/" target="_blank">Gravity Form</a>
+										    <p><?php _e('Supports 5 Different Contact forms','wpfixedverticalfeedbackbutton'); ?></p>
+										    <ul>
+											    <li><a href="http://wordpress.org/plugins/si-contact-form" target="_blank"><?php _e('Fast Secure Contact Form','wpfixedverticalfeedbackbutton') ?></a></li>
+											    <li><a href="http://www.deliciousdays.com/cforms-plugin" target="_blank"><?php _e('CForms II','wpfixedverticalfeedbackbutton') ?></a></li>
+											    <li><a href="http://wordpress.org/plugins/contact-form-7/" target="_blank"><?php _e('Contact Form 7','wpfixedverticalfeedbackbutton') ?></a></li>
+											    <li><a href="https://wordpress.org/plugins/ninja-forms/" target="_blank"><?php _e('Ninja Form','wpfixedverticalfeedbackbutton') ?></a></li>
+											    <li><a href="http://www.gravityforms.com/" target="_blank"><?php _e('Gravity Form','wpfixedverticalfeedbackbutton') ?></a></li>
+										    </ul>
 									    </li>
-									    <li>Unlimited Buttons</li>
+									    <li><?php _e('Unlimited Buttons','wpfixedverticalfeedbackbutton') ?></li>
 								    </ul>
+								    <a class="button" href="http://wpboxr.com/product/fixed-vertical-feedback-button-for-wordpress" target="_blank"><?php _e('Grab the Pro Version','wpfixedverticalfeedbackbutton') ?></a>
 							    </div>
 						    </div>
 
 
 						    <div class="postbox">
-							    <h3>Codeboxr Updates</h3>
+							    <h3><?php _e('WPBoxr Updates','wpfixedverticalfeedbackbutton'); ?></h3>
 							    <div class="inside">
 								    <?php
 
 								    include_once(ABSPATH . WPINC . '/feed.php');
 								    if (function_exists('fetch_feed')) {
-									    $feed = fetch_feed('http://codeboxr.com/feed');
+									    $feed = fetch_feed('http://wpboxr.com/feed');
 									    // $feed = fetch_feed('http://feeds.feedburner.com/codeboxr'); // this is the external website's RSS feed URL
 									    if (!is_wp_error($feed)) : $feed->init();
 										    $feed->set_output_encoding('UTF-8'); // this is the encoding parameter, and can be left unchanged in almost every case
@@ -572,9 +581,6 @@ class cbWordpressFixedVerticalFeedbackButton {
 											    $url = $block->get_permalink();
 											    echo '<li><a target="_blank" href="' . $url . '">';
 											    echo '<strong>' . $block->get_title() . '</strong></a></li>';
-											    //var_dump($block->get_description());
-											    //echo $block->get_description();
-											    //echo substr($block->get_description(),0, strpos($block->get_description(), "<br />")+4);
 										    }//end foreach
 										    echo '</ul>';
 
@@ -584,38 +590,45 @@ class cbWordpressFixedVerticalFeedbackButton {
 								    ?>
 							    </div>
 						    </div>
-
 						    <div class="postbox">
-							    <h3>Codeboxr on facebook</h3>
 							    <div class="inside">
-								    <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fcodeboxr&amp;width=260&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=558248797526834" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
+								    <h3><?php _e('Codeboxr Networks','wpfixedverticalfeedbackbutton') ?></h3>
+								    <p><?php _e('Html, Wordpress & Joomla Themes','wpfixedverticalfeedbackbutton') ?></p>
+								    <a target="_blank" href="http://themeboxr.com"><img src="http://themeboxr.com/wp-content/themes/themeboxr/images/themeboxr-logo-rect.png" style="max-width: 100%;" alt="themeboxr" title="Themeboxr - useful themes"  /></a>
+								    <br/>
+								    <p><?php _e('Wordpress Plugins','wpfixedverticalfeedbackbutton') ?></p>
+								    <a target="_blank" href="http://wpboxr.com"><img src="http://wpboxr.com/wp-content/themes/themeboxr/images/wpboxr-logo-rect.png" style="max-width: 100%;" alt="wpboxr" title="WPBoxr - Wordpress Extracts"  /></a>
+								    <br/><br/>
+								    <!--p>Joomla Extensions</p>
+								    <a target="_blank" href="http://joomboxr.com"><img src="http://joomboxr.com/wp-content/themes/themeboxr/images/joomboxr-logo-rect.png" style="max-width: 100%;" alt="joomboxr" title="Joomboxr - Joomla Extracts"  /></a-->
+
+							    </div>
+						    </div>
+						    <div class="postbox">
+							    <h3><?php _e('Codeboxr on facebook','wpfixedverticalfeedbackbutton') ?></h3>
+							    <div class="inside">
+								    <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fwpboxr&amp;width=260&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=558248797526834" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
 							    </div>
 						    </div>
 					    </div> <!-- .meta-box-sortables -->
 
 				    </div> <!-- #postbox-container-1 .postbox-container -->
-
 			    </div> <!-- #post-body .metabox-holder .columns-2 -->
-
 			    <br class="clear">
 		    </div> <!-- #poststuff -->
 
 	    </div> <!-- .wrap -->
 
-        <script type="text/javascript">
+        <!--script type="text/javascript">
               jQuery(document).ready(function($) {
-                  //jQuery(".fvfeedbackbuttonprop").hide();
-                  //toggle the componenet with class msg_body
                   $("#fvfeedbackhandler0 h3").parent(".fvfeedbackhandler").toggleClass("fvfeedbackhandlert");
 	              $("#fvfeedbackhandler0 h3").next(".fvfeedbackbuttonprop").slideToggle();
 	              $(".fvfeedbackhandler  h3").click(function(){
-
 		              $(this).parent(".fvfeedbackhandler").toggleClass("fvfeedbackhandlert");
 		              $(this).next(".fvfeedbackbuttonprop").slideToggle();
-
                   });
               });
-        </script>
+        </script-->
 
 
         <?php
@@ -902,9 +915,9 @@ class cbWordpressFixedVerticalFeedbackButton {
 
     // adding settings and support link under the plugin name in the plugin list
     function add_wpfixedverticalfeedbackbutton_settings_link($links) {
-        $settings_link = '<a href="options-general.php?page=wpfixedverticalfeedbackbutton">Settings</a>';
+        $settings_link = '<a href="options-general.php?page=wpfixedverticalfeedbackbutton">'.__('Settings','wpfixedverticalfeedbackbutton').'</a>';
         array_unshift($links, $settings_link);
-        $support_link  = '<a href="http://codeboxr.com/contact-us.html">Support</a>';
+        $support_link  = '<a href="http://wpboxr.com/contact-us">'.__('Support','wpfixedverticalfeedbackbutton').'</a>';
         array_unshift($links, $support_link);
         return $links;
 
