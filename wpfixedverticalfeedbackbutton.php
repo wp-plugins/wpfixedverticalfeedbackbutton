@@ -5,7 +5,7 @@
   Plugin URI: http://wpboxr.com/product/fixed-vertical-feedback-button-for-wordpress
   Description: Fixed Vertical feedback button for wordpress with custom forms integration
   Author: WPBoxr
-  Version: 3.5
+  Version: 3.6
   Author URI: http://wpboxr.com
  */
 /*
@@ -599,13 +599,13 @@ class cbWordpressFixedVerticalFeedbackButton {
 								    <p><?php _e('Wordpress Plugins','wpfixedverticalfeedbackbutton') ?></p>
 								    <a target="_blank" href="http://wpboxr.com"><img src="http://wpboxr.com/wp-content/themes/themeboxr/images/wpboxr-logo-rect.png" style="max-width: 100%;" alt="wpboxr" title="WPBoxr - Wordpress Extracts"  /></a>
 								    <br/><br/>
-								    <!--p>Joomla Extensions</p>
-								    <a target="_blank" href="http://joomboxr.com"><img src="http://joomboxr.com/wp-content/themes/themeboxr/images/joomboxr-logo-rect.png" style="max-width: 100%;" alt="joomboxr" title="Joomboxr - Joomla Extracts"  /></a-->
+								    <p>Joomla Extensions</p>
+								    <a target="_blank" href="http://joomboxr.com"><img src="http://joomboxr.com/wp-content/themes/themeboxr/images/joomboxr-logo-rect.png" style="max-width: 100%;" alt="joomboxr" title="Joomboxr - Joomla Extracts"  /></a>
 
 							    </div>
 						    </div>
 						    <div class="postbox">
-							    <h3><?php _e('Codeboxr on facebook','wpfixedverticalfeedbackbutton') ?></h3>
+							    <h3><?php _e('WPBoxr on facebook','wpfixedverticalfeedbackbutton') ?></h3>
 							    <div class="inside">
 								    <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fwpboxr&amp;width=260&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=558248797526834" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
 							    </div>
@@ -790,8 +790,18 @@ class cbWordpressFixedVerticalFeedbackButton {
 
     // button html
     function wpfvfbutton_addhtml() {
-        global $post;
-        // var_dump($post->ID);
+        global $post, $wp_query;
+	    $post_page_id = '';
+	    if(isset($wp_query->is_posts_page) && $wp_query->is_posts_page == 1){
+		    $post_page_id = $wp_query->is_posts_page;
+	    }
+	    else{
+		    $post_page_id = $post->ID;
+	    }
+        /*var_dump('page id='.$post->ID);
+	    echo '<pre>';
+	    print_r($wp_query);
+	    echo '</pre>';*/
         //echo '<pre>'; print_r($this->wpfixedverticalfeedbackbutton['buttoncon']['buttontext']); echo '</pre>'; die();
 
         $link = '';
@@ -829,8 +839,8 @@ class cbWordpressFixedVerticalFeedbackButton {
                     ';
                 }
                 if (
-                    $this->wpfixedverticalfeedbackbutton['buttoncon']['showtype'][$count] == 'show' && in_array($post->ID, $postlist) ||
-                    $this->wpfixedverticalfeedbackbutton['buttoncon']['showtype'][$count] == 'hide' && !in_array($post->ID, $postlist) ||
+                    $this->wpfixedverticalfeedbackbutton['buttoncon']['showtype'][$count] == 'show' && in_array($post_page_id, $postlist) ||
+                    $this->wpfixedverticalfeedbackbutton['buttoncon']['showtype'][$count] == 'hide' && !in_array($post_page_id, $postlist) ||
                     empty($this->wpfixedverticalfeedbackbutton['buttoncon']['postlist'][$count])
                     // || is_admin()
                 ) {

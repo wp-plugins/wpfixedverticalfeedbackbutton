@@ -28,12 +28,11 @@ Features:
 Pro Version:
 
 There is a pro version of this plugin supported from our company site which supports unlimited buttons and supports 5 Different Contact forms
-
-*   Fast Secure Contact Form
-*   CForms II
-*   Contact Form 7
-*   Ninja Form
-*   Gravity Form
+- Fast Secure Contact Form,
+- CForms II
+- Contact Form 7
+- Ninja Form
+- Gravity Form
 
 See more details here http://wpboxr.com/product/fixed-vertical-feedback-button-for-wordpress
 
@@ -79,6 +78,9 @@ You  can set the position then button will be fixed at that position, just try i
 
 
 == Changelog ==
+= 3.6 =
+* Fixed page or post id issue if the page is wordpress blog landing page or posts page (can be set from setting->reading)
+
 = 3.5 =
 * Custom image field now support wordpress media upload
 * First time added translation
